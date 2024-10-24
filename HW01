@@ -1,1 +1,57 @@
+#1 (Jad)
+As a user, I can search for available hotel rooms
+a) Description: 
+A user on the website can search for available hotel rooms based on their desired check in and check-out dates.
+They can also search for other preferences like room type, size, amenitites and much more. The search should return results that match the preferences.
 
+b) Tasks:
+ - Implement search filter based on date, room type, and amenities
+ - Should display search results in a user friendly format for example sorted by price
+ - Should allow users to filter and sort the search results as they browse
+
+c) Tests:
+ - Verify that search returns hotel rooms for the specified dates
+ - Confirm that search returns only available rooms that match the criteria
+ - Enure that filters and sorting options all work correctly
+
+d) Assignee:
+ - Peter Griffin: Implement search function and filters
+ - Homer Simpson: Design the User interface for displaying the serch results
+
+e) Estimation: 25
+
+f) Priority: 10
+
+g) Done:
+ - Search function is working
+ - Filters and sorting options work as intended
+ - Search results are correctly showing what is available for the specified dates
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+#2 (Jad)
+As a user, I can pay for my hotel reservation
+a) Description:
+User on the hotel website can pay for their reservation using various payment methods like credit/debit card or pay pal or bank transfer, etc.
+The payment management system should confirm the payment was successful or failed, and should send the receipt to the user.
+
+b) Tasks:
+ - Integrate payment gateway into management system
+ - Implement payment confirmation and error handling
+ - Send the payment receipt to the user
+
+c) Tests:
+ - Verify that different forms of payment are all working
+ - Check for accurate handling of payment failures (customer support system)
+ - Confirm that users are recieving receipts
+
+d) Assignee:
+ - Drake: Handle payment integration
+ - P diddy: Handle billing and payment error customer support
+
+e) Estimation: 30
+
+f) Priority: 15
+
+g) Done:
+ - Payment processing is reliable and secure
+ - Customers receipts are correctly recieved
+ - All forms of payment are working
