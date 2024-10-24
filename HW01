@@ -83,3 +83,31 @@ g) Done:
 - Shapes are created and displayed
 - Operator overloading is working properly
 -------------------------------------------------------------------------------------------------------
+#4 (Kamin)
+As a user, I can save my created 2D shapes for future use.
+
+a) Description: A user can save their created 2D shapes in a file format so they can be loaded later. The system will provide options to choose the file type and ensure the shapes retain their properties.
+
+b) Tasks:
+
+Implement functionality to save shapes in different file formats (e.g., JSON, SVG).
+Create a loading mechanism to retrieve saved shapes and display them on the canvas.
+Ensure all properties of the shapes are preserved during saving and loading.
+c) Tests:
+
+Verify that shapes can be saved correctly in the chosen file format.
+Check that loading the saved shapes restores their properties accurately.
+d) Assignee:
+
+Developer C: Implements the saving functionality and file format options.
+Developer D: Implements the loading mechanism for retrieving saved shapes.
+e) Estimation: 20 hours
+
+f) Priority: 6 (Medium)
+
+g) Done:
+
+Shapes can be saved successfully in the selected file formats.
+Loaded shapes display correctly with all properties intact.
+
+
