@@ -55,3 +55,31 @@ g) Done:
  - Payment processing is reliable and secure
  - Customers receipts are correctly recieved
  - All forms of payment are working
+
+#3 (Osvaldo)
+As a user I can create a base 2D shape like circles or rectangles.
+
+a) Description: A user can create simple / basic 2D shapes which will then display on a canvas. 
+The system will use inheritance for the shapes and a draw function to display and resize the shapes.
+
+b) Tasks:
+- Create different shapes that inherit from a base shape class 
+- Display the shape using the draw function
+- Be able to resize the shapes
+
+c) Tests:
+- Verify that the draw function works 
+- Chack if the resize works for the shape
+
+d) Assignee: 
+- " ", implements inheritance for the shapes and uses the draw function
+- " ", implements the operator overloading for resizing the shapes
+
+e) Estimation: 15
+
+f) Priority: 7 
+
+g) Done: 
+- Shapes are created and displayed
+- Operator overloading is working properly
+
