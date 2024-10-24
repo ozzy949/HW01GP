@@ -55,7 +55,7 @@ g) Done:
  - Payment processing is reliable and secure
  - Customers receipts are correctly recieved
  - All forms of payment are working
-
+------------------------------------------------------------------------------------------------------
 #3 (Osvaldo)
 As a user I can create a base 2D shape like circles or rectangles.
 
@@ -82,4 +82,4 @@ f) Priority: 7
 g) Done: 
 - Shapes are created and displayed
 - Operator overloading is working properly
-
+-------------------------------------------------------------------------------------------------------
