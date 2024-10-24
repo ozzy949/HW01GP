@@ -90,13 +90,13 @@ a) Description: A user can save their created 2D shapes in a file format so they
 
 b) Tasks:
 
-Implement functionality to save shapes in different file formats (e.g., JSON, SVG).
-Create a loading mechanism to retrieve saved shapes and display them on the canvas.
-Ensure all properties of the shapes are preserved during saving and loading.
+- Implement functionality to save shapes in different file formats (e.g., JSON, SVG).
+- Create a loading mechanism to retrieve saved shapes and display them on the canvas.
+- Ensure all properties of the shapes are preserved during saving and loading.
 c) Tests:
 
-Verify that shapes can be saved correctly in the chosen file format.
-Check that loading the saved shapes restores their properties accurately.
+- Verify that shapes can be saved correctly in the chosen file format.
+- Check that loading the saved shapes restores their properties accurately.
 d) Assignee:
 
 Developer C: Implements the saving functionality and file format options.
@@ -107,7 +107,65 @@ f) Priority: 6 (Medium)
 
 g) Done:
 
-Shapes can be saved successfully in the selected file formats.
-Loaded shapes display correctly with all properties intact.
+- Shapes can be saved successfully in the selected file formats.
+- Loaded shapes display correctly with all properties intact.
+-------------------------------------------------------------------------------------------------------
+#5 (Kamin)
+As a user, I can group multiple shapes into a single entity for easier manipulation.
+
+a) Description: A user can group multiple 2D shapes into a single entity, allowing them to move, resize, and modify the grouped shapes as one. The system will offer options to ungroup the shapes as needed.
+
+b) Tasks:
+
+- Implement the ability to select multiple shapes on the canvas.
+- Create a grouping functionality to bind the selected shapes into a single entity.
+- Develop an ungrouping feature to separate the grouped shapes back into individual entities.
+c) Tests:
+
+- Verify that multiple shapes can be successfully grouped.
+- Check that grouped shapes move and resize as a single entity.
+- Test the ungrouping feature to ensure shapes are restored to individual status correctly.
+d) Assignee:
+
+Developer A: Implements shape selection and grouping functionality.
+Developer B: Develops the ungrouping feature and tests.
+e) Estimation: 15 hours
+
+f) Priority: 5 (Medium)
+
+g) Done:
+
+- Users can group and ungroup shapes successfully.
+- Grouped shapes maintain their properties when manipulated as a single entity.
+-------------------------------------------------------------------------------------------------------
+#6 (Kamin)
+As a user, I can book a hotel room online with specific preferences.
+
+a) Description: A user can search for and book a hotel room based on their preferences, such as room type, amenities, check-in and check-out dates, and price range. The system will confirm the reservation and send an email confirmation with booking details.
+
+b) Tasks:
+
+- Implement a search functionality for hotel rooms based on user-specified preferences.
+- Develop a booking feature that allows users to select a room and confirm the reservation.
+- Integrate email confirmation to send booking details to the user.
+c) Tests:
+
+- Verify that users can search for rooms with specific filters and preferences.
+- Check that the booking process successfully reserves the room and updates availability.
+- Ensure that a confirmation email is sent with the correct booking details.
+d) Assignee:
+
+Developer E: Implements the search and filtering functionality for hotel rooms.
+Developer F: Develops the booking feature and email confirmation integration.
+e) Estimation: 18 hours
+
+f) Priority: 7 (High)
+
+g) Done:
+
+- Users can search for hotel rooms with specified preferences.
+- The booking process completes successfully, and a confirmation email is sent.
+
+
 
 
