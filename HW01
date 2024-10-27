@@ -137,8 +137,40 @@ g) Done:
 
 - Users can group and ungroup shapes successfully.
 - Grouped shapes maintain their properties when manipulated as a single entity.
+-------------------------------------------------------------------------------------------------------
 
+#6 (Melvin)
+As a user, I can apply transformations such as rotation, scaling, and translation to shapes so that I can adjust them to fit different use cases within the graphic model.
 
+a.) Description: A user is allowed to transform shapes dynamically using different functions. The functions consist of rating shapes by a specified angle (1-360 degrees), resizing or scaling shapes, and moving (translating) them across a fixed dimension.
+
+b.) Tasks:
+-Implement transformation methods for rotating shapes by a given angle
+-Implement scaling functionality, ensuring that shapes scale relative to a fixed point
+-Implement translation functionality to move shapes across the rendering window
+
+c.) Tests:
+-Verify that shapes rotate smoothly without distortion
+-Ensure scaling retains shape proportions and is centered around a specified point
+-Confirm translation moves shapes to precise coordinates
+-Check that transformations do not interfere with shape rendering or color
+-Review documentation to confirm it accurately describes transformation usage
+
+d.) Assignees:
+
+-Developer A: Rotation and translation functionalities
+-Developer B: Scaling functionalities
+-Developer C: Transformation input interface
+
+e.) Estimation: 5 hours
+
+e.) Priority: 8
+
+f:) Done: 
+-Shapes can be rotated, scaled, and translated without errors
+-User interface allows easy input of transformation values
+
+-------------------------------------------------------------------------------------------------------
 
 
 
