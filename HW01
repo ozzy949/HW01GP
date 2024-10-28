@@ -172,5 +172,36 @@ f:) Done:
 
 -------------------------------------------------------------------------------------------------------
 
+#7 (Audrey)
+As a user, I can prompt the program at any time to produce a report of all shapes, sorted by ID, so that I may view the data (including their properties) for each one, in the form of a list/table.
 
+a.) Description: Produce a shape listing report sorted by shape id (at any time). All
+shape properties should be included in the report.
 
+b.) Tasks:
+-Implement a menu/menu option that allows the user to produce the report
+-Implement a print function, called by the menu option, that will display all the data of every available shape that is stored within the shape vector
+-Within the print function, implement sorting to print each shape by their ID numbers
+
+c.) Tests:
+-Confirm that the user can successfully access the menu option
+-Verify that selecting the option calls the appropriate function
+-Ensure that all shapes in the vector, including all their properties, are displayed
+-Verify that the shapes being displayed are properly sorted by their ID numbers
+-Ensure that the data being output is easy for the user to read and understand, formatted and labeled properly
+-Confirm that, after printing, the user may return to the main program without issue
+
+d.) Assignees:
+-Developer A: Adding the print functionalities, code outputting each shape’s data
+-Developer B: Creating a menu/menu option to call the function, adding code to the function to allow for greater user readability (labels, spacing, etc.)
+
+e.) Estimation: 10 hrs
+
+f.) Priority: 11
+
+g:) Done: 
+-User can easily access the option to create a listing report of all shapes
+-After selecting the option, all shapes are displayed in the form of a list/table, sorted by ID
+-User may seamlessly return to the main program after displaying the report
+
+-------------------------------------------------------------------------------------------------------
