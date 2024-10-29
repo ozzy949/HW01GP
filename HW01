@@ -268,6 +268,7 @@ g) Done:
 - Sorting by perimeter is functioning as expected.  
 - Report displays type, ID, and perimeter accurately for each shape.
 
+------------------------------------------------------------------------------------------------------
 
 #10 (Salomon)
 As a user, I am able to save all changes between executions
