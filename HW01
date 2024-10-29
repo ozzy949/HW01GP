@@ -206,6 +206,69 @@ g:) Done:
 
 -------------------------------------------------------------------------------------------------------
 
+#8 (Nick)
+As a user, I can view a report of shapes sorted by area.
+
+a) Description:  
+A user can generate a report that lists all shapes with a calculated area, sorted in ascending order based on their area. Each entry in the report includes the shape's type, 
+unique ID, and its computed area. The report allows users to easily view and compare shapes by their size at any given time.
+
+b) Tasks:  
+- Implement logic to calculate the area for each shape and filter out those without an area.
+- Sort shapes with an area by ascending order of area.
+- Display each shape’s type, ID, and area in the report.
+
+c) Tests:  
+- Verify that shapes without an area are excluded from the report.
+- Confirm that shapes in the report are correctly sorted by area.
+- Ensure that each entry includes accurate type, ID, and area information.
+
+d) Assignee:  
+- Developer A: Implement area calculation and sorting functionality.
+- Developer B: Design the report layout and presentation.
+
+e) Estimation: 20  
+
+f) Priority: 3
+
+g) Done:  
+- Shapes are filtered correctly, showing only those with an area.
+- Sorting by area is functioning as expected.
+- Report displays type, ID, and area accurately for each shape.
+
+-------------------------------------------------------------------------------------------------------
+
+#9 (Nick)
+As a user, I can view a report of shapes sorted by perimeter.  
+
+a) Description: 
+A user can generate a report listing only shapes with a calculated perimeter, sorted in ascending order based on their perimeter. Each entry in the report includes the shape's type, unique ID, and its computed perimeter. 
+This report enables users to assess and organize shapes by perimeter measurements.  
+
+b) Tasks:  
+- Implement logic to calculate the perimeter for each shape and filter out those without a perimeter.  
+- Sort shapes with a perimeter by ascending order of perimeter.  
+- Display each shape’s type, ID, and perimeter in the report.  
+
+c) Tests:  
+- Verify that shapes without a perimeter are excluded from the report.  
+- Confirm that shapes in the report are correctly sorted by perimeter.  
+- Ensure that each entry includes accurate type, ID, and perimeter information.  
+
+d) Assignee:  
+- Developer A: Implement perimeter calculation and sorting functionality.  
+- Developer B: Design the report layout and presentation.  
+
+e) Estimation: 15  
+
+f) Priority: 9  
+
+g) Done:  
+- Shapes are filtered correctly, showing only those with a perimeter.  
+- Sorting by perimeter is functioning as expected.  
+- Report displays type, ID, and perimeter accurately for each shape.
+
+
 #10 (Salomon)
 As a user, I am able to save all changes between executions
 
