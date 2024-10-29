@@ -205,3 +205,37 @@ g:) Done:
 -User may seamlessly return to the main program after displaying the report
 
 -------------------------------------------------------------------------------------------------------
+
+#10 (Salomon)
+As a user, I am able to save all changes between executions
+
+a) Description: 
+Any changes that the user makes is automatically saved, and is loaded upon every execution
+
+b) Tasks:
+-Implement a function that saves all the shapes and their details in a save file, and is called anytime changes are made
+-Implement a function that reads the save file and places the shapes upon execution of the program
+
+c) Tests:
+-Verify the save function is properly adding to the save file every time a shape is created/ deleted
+-Verify the save function is properly adding to the save file every time a shape is changed
+-Make sure the shapes from the save file are automatically read into the program upon execution
+-Make sure the all shapes read from the save file are the same from the previous execution
+
+d) Assignees:
+-Developer A: Add the save function, ensure proper format into the save file
+-Developer B: Call save function any time a shape is created, destroyed, or changed
+-Developer C: Add the load function, make it so it’s called initially when the program is executed
+
+e) Estimation: 20 hrs
+
+f) Priority: 5 (medium)
+
+g) Done:
+-All shape data is saved when a change occurs
+-All previous shape data is retrieved from save file upon execution of program and is loaded
+
+-------------------------------------------------------------------------------------------------------
+
+
+
