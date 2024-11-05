@@ -2,6 +2,7 @@
 #define SHAPE_H_
 
 #include <string> // std::string & std::to_string
+#include <cmath>  
 using std::to_string;
 
 class Shape {
@@ -65,5 +66,40 @@ class Rectangle : public Shape {
         }
 
     };
+
+class Line : public Shape {
+private:
+    int x2, y2; //Endpoint coordinates for the line
+
+public: 
+    Line() : Shape("Line", 0, 0, "Black", 0), x2(0), y2(0) {}
+
+    Line(int x1, int y1, int x2, int y2, std::string color, int rotationAngle)
+        : Shape("Line", x1, y1, Color, rotationAngle), x2(x2), y2(y2) {}
+
+    void draw() override {
+        //drawing logic
+
+    }
+
+    double perimeter() const override{
+        return std::hypot(x2- getXPos(), y2 - getYPos()); // formula to find distance
+    }
+
+    double area() const override{
+        return 0; //line has no area
+    }
+
+    std::string getStringFormat() const override{
+        return getType() + "" + to_string(getXPos())+ "" + to_string(getYPos()) + " " + getColor() + " " +
+               to_string(getRotationAngle()) + " " + to_string(x2) + " " + to_string(y2);
+        }
+    };
+
+
+
+
+
+
 
 #endif
