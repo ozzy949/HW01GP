@@ -1,0 +1,69 @@
+#ifndef SHAPE_H_
+#define SHAPE_H_
+
+#include <string> // std::string & std::to_string
+using std::to_string;
+
+class Shape {
+        std::string type;
+        int xPos, yPos;
+        std::string color; // This might be changed to use Qt's built in color class QColor
+        int rotationAngle;
+
+    public:
+        Shape()
+            : type{""}, xPos{0}, yPos{0}, color{""}, rotationAngle{0} {}
+
+        Shape(std::string _type, int x, int y, std::string _color, int _rotationAngle) 
+            : type{_type}, xPos{x}, yPos{y}, color{_color}, rotationAngle{_rotationAngle} {}
+        
+        ~Shape() {}
+
+        std::string getType() const { return type; }
+        
+        int getXPos() const { return xPos; }
+        
+        int getYPos() const { return yPos; }
+        
+        std::string getColor() const { return color; }
+        
+        int getRotationAngle() const { return rotationAngle; }
+
+        virtual void draw() = 0;
+
+        // getStringFormat() is meant for the parser to have an easy way to store shapes and their properties
+        // The general format im using is just the variables from the base shaoe class in order
+        // The overrided version should be the same but with the derived variables at the end in order
+        virtual std::string getStringFormat() const {
+            return getType() + " " + to_string(getXPos()) + " " + to_string(getYPos()) + " " + getColor() + " " + to_string(getRotationAngle());
+        }
+
+}; 
+
+
+class Rectangle : public Shape {
+        int width, height;
+
+    public:
+        Rectangle()
+            : Shape("Rectangle", 0, 0, "White", 0), width{1}, height{1} {}
+
+        Rectangle(int x, int y, std::string _color, int _rotationAngle, int _width, int _height)
+            : Shape("Rectangle", x, y, _color, _rotationAngle), width{_width}, height{_height} {}
+        
+        ~Rectangle() {}
+
+        int getWidth() const { return width; }
+
+        int getHeight() const { return height; }
+
+        void draw() override {}
+
+        std::string getStringFormat() const override {
+            return getType() + " " + to_string(getXPos()) + " " + to_string(getYPos()) + " " + getColor() + " " + to_string(getRotationAngle()) +
+                " " + to_string(getWidth()) + " " + to_string(getHeight());
+        }
+
+    };
+
+#endif
