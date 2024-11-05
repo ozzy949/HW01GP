@@ -1,0 +1,51 @@
+#ifndef PARSER_H_
+#define PARSER_H_
+
+#include "vector.h"
+#include "shape.h"
+#include <fstream> // std::ifstream & std::ofstream
+#include <sstream> // std::istringstream
+
+
+// class meant to hold the write (saveToFile()) and load (loadInto()) functions
+class Parser {
+        public:
+            void saveToFile(myStd::vector<Shape*>& shapes) {
+                std::ofstream file("shapes.txt");
+
+                if (file.is_open()) {
+                    for (const auto& shape: shapes) {
+                        file << shape->getStringFormat() << std::endl;
+                    }
+                }
+            }
+            
+            myStd::vector<Shape*> loadInto(myStd::vector<Shape*>& loadedShapes) {
+                std::ifstream file("shapes.txt");
+                std::string line;
+
+                if (file.is_open()) {
+                    while (std::getline(file, line)) {
+                        std::istringstream iss(line); // to input the individual parts of the string to their respective variables
+                        std::string type;
+                        int x, y, rotationAngle;
+                        std::string color;
+
+                        iss >> type >> x >> y >> color >> rotationAngle;
+
+                        if (type == "Rectangle") {
+                            int width, height;
+                            iss >> width >> height;
+                            loadedShapes.push_back(new Rectangle(x, y, color, rotationAngle, width, height));
+                        }
+                        // add more if statements for the other shapes
+                    }
+                }
+
+                return loadedShapes;
+}
+
+};
+
+
+#endif
