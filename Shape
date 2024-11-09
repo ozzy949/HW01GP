@@ -82,11 +82,11 @@ public:
 
     }
 
-    double perimeter() const override{
+    double perimeter() const {
         return std::hypot(x2- getXPos(), y2 - getYPos()); // formula to find distance
     }
 
-    double area() const override{
+    double area() const {
         return 0; //line has no area
     }
 
@@ -111,7 +111,7 @@ class Circle : public Shape {
 
     }
 
-    double perimeter() const override {
+    double perimeter() const  {
         return 2 * M_PI * radius;      // 2 pr r is formula for circumference/ perimeter 
     }
 
