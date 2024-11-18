@@ -7,7 +7,6 @@
 #include <sstream> // std::istringstream
 
 
-// class meant to hold the write (saveToFile()) and load (loadInto()) functions
 class Parser {
         public:
             void saveToFile(myStd::vector<Shape*>& shapes) {
@@ -20,29 +19,43 @@ class Parser {
                 }
             }
             
-            myStd::vector<Shape*> loadInto(myStd::vector<Shape*>& loadedShapes) {
+            void loadInto(myStd::vector<Shape*>& loadedShapes) {
                 std::ifstream file("shapes.txt");
                 std::string line;
 
                 if (file.is_open()) {
                     while (std::getline(file, line)) {
-                        std::istringstream iss(line); // to input the individual parts of the string to their respective variables
+                        std::istringstream iss(line); // stream to input the individual strings from the line
+
+                        // declaring variables to save input from line
                         std::string type;
                         int x, y, rotationAngle;
                         std::string color;
 
                         iss >> type >> x >> y >> color >> rotationAngle;
 
+                        // inputing additional variables and creating class based on shape type
                         if (type == "Rectangle") {
                             int width, height;
                             iss >> width >> height;
                             loadedShapes.push_back(new Rectangle(x, y, color, rotationAngle, width, height));
                         }
-                        // add more if statements for the other shapes
+                        
+                        if (type == "Line") {
+                            int x2, y2;
+                            iss >> x2 >> y2;
+                            loadedShapes.push_back(new Line(x, y, x2, y2, color, rotationAngle));
+                        }
+
+                        if (type == "Circle") {
+                            int radius;
+                            iss >> radius;
+                            loadedShapes.push_back(new Circle(x, y, color, rotationAngle, radius));
+                        }
+
+                        //I tried to add the ellipse shape but I'mnot sure how to input it's variables
                     }
                 }
-
-                return loadedShapes;
 }
 
 };
