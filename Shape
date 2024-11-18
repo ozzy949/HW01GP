@@ -75,7 +75,7 @@ public:
     Line() : Shape("Line", 0, 0, "Black", 0), x2(0), y2(0) {}
 
     Line(int x1, int y1, int x2, int y2, std::string color, int rotationAngle)
-        : Shape("Line", x1, y1, Color, rotationAngle), x2(x2), y2(y2) {}
+        : Shape("Line", x1, y1, color, rotationAngle), x2(x2), y2(y2) {}
 
     void draw() override {
         //drawing logic
@@ -91,7 +91,7 @@ public:
     }
 
     std::string getStringFormat() const override{
-        return getType() + "" + to_string(getXPos())+ "" + to_string(getYPos()) + " " + getColor() + " " +
+        return getType() + " " + to_string(getXPos())+ " " + to_string(getYPos()) + " " + getColor() + " " +
                to_string(getRotationAngle()) + " " + to_string(x2) + " " + to_string(y2);
         }
     };
@@ -103,8 +103,8 @@ class Circle : public Shape {
     public:
         Circle() : Shape("Circle", 0, 0, "Black", 0), radius(1) {}
 
-        Circle (int x, int y, std::string color, int rotationAngle, int radius)
-            :Shape("Circle", x, y, color, rotationAngle,) radius(_radius) {}
+        Circle (int x, int y, std::string color, int rotationAngle, int _radius)
+            :Shape{"Circle", x, y, color, rotationAngle}, radius{_radius} {}
 
     void draw() override {
             //draw logic 
@@ -117,21 +117,9 @@ class Circle : public Shape {
 
     std::string getStringFormat() const override {
         return getType() + " " + to_string(getXPos()) + " " + to_string(getYPos()) + " " + getColor() + " " +
-            to_string(getRotationAngle()) + " " + to_string(x2) + " " + to_string(y2); 
+            to_string(getRotationAngle()) + " " + to_string(radius);
 
     }
 };
 
-
-
-
-
-
-
-
-
-
-
-
 #endif
-
