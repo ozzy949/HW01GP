@@ -1,6 +1,5 @@
 #include "ellipse.h"
 
-// Example rendering method in your QWidget subclass
 void GraphicsWidget::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
 
