@@ -1,33 +1,48 @@
+#ifndef LINE_H_
+#define LINE_H_
+
 #include "shape.h"
 #include <QPainter>
 #include <QPoint>
 #include <QSize>
 
+
+
+
 class Line : public Shape {
-private:
-    int x2, y2; //Endpoint coordinates for the line
+    QPoint startPoint, endPoint;
+    QPen pen;
 
-public: 
-    Line() : Shape("Line", 0, 0, "Black", 0), x2(0), y2(0) {}
+public:
+    Line(int id,
+         const QPoint& start,
+         const QPoint& end,
+         const QPen& pen,
+         const std::string& color = "black",
+         int rotationAngle = 0)
+        : Shape("Line", start.x(), start.y(), color, rotationAngle),
+          startPoint(start),
+          endPoint(end),
+          pen(pen) {}
 
-    Line(int x1, int y1, int x2, int y2, std::string color, int rotationAngle)
-        : Shape("Line", x1, y1, color, rotationAngle), x2(x2), y2(y2) {}
+    void setStartPoint(const QPoint& point) { startPoint = point; }
+    void setEndPoint(const QPoint& point) { endPoint = point; }
+    void setPenColor(const QColor& color) { pen.setColor(color); }
+    void setPenWidth(int width) { pen.setWidth(width); }
+    void setPenStyle(Qt::PenStyle style) { pen.setStyle(style); }
+    void setPenCapStyle(Qt::PenCapStyle capStyle) { pen.setCapStyle(capStyle); }
+    void setPenJoinStyle(Qt::PenJoinStyle joinStyle) { pen.setJoinStyle(joinStyle); }
 
-    void draw() override {
-        //drawing logic
-
+    void draw(QPainter& painter) override {
+        painter.setPen(pen);
+        painter.drawLine(startPoint, endPoint);
     }
 
-    double perimeter() const {
-        return std::hypot(x2- getXPos(), y2 - getYPos()); // formula to find distance
+    std::string getStringFormat() const override {
+        return Shape::getStringFormat() + " " +
+               to_string(startPoint.x()) + " " + to_string(startPoint.y()) + " " +
+               to_string(endPoint.x()) + " " + to_string(endPoint.y());
     }
+};
 
-    double area() const {
-        return 0; //line has no area
-    }
-
-    std::string getStringFormat() const override{
-        return getType() + " " + to_string(getXPos())+ " " + to_string(getYPos()) + " " + getColor() + " " +
-               to_string(getRotationAngle()) + " " + to_string(x2) + " " + to_string(y2);
-        }
-    };
+#endif
