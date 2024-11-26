@@ -2,7 +2,7 @@
 #include <cmath>
 
 // Constructor
-Polygon::Polygon(int id, const QVector<QPoint>& points, const QPoint& position, 
+Polygon::Polygon(int id, const QVector<QPoint>& points, const QPoint& position,
                  const QPen& pen, const QBrush& brush)
     : Shape(id, position), vertices(points) {
     this->pen = pen;
@@ -53,4 +53,32 @@ double Polygon::area() const {
         a += p1.x() * p2.y() - p2.x() * p1.y();
     }
     return std::abs(a) / 2.0;
+}
+
+std::string Polygon::toString() const {
+    std::ostringstream oss;
+    oss << "Polygon " << getId() << " " << getPosition().x() << " " << getPosition().y() << " "
+        << getPen().color().name().toStdString() << " "
+        << getBrush().color().name().toStdString() << " "
+        << vertices.size();
+    for (const QPoint& vertex : vertices) {
+        oss << " " << vertex.x() << " " << vertex.y();
+    }
+    return oss.str();
+}
+
+Polygon* Polygon::fromString(const std::string& str) {
+    std::istringstream iss(str);
+    std::string type, penColor, brushColor;
+    int id, x, y, numVertices;
+    iss >> type >> id >> x >> y >> penColor >> brushColor >> numVertices;
+
+    QVector<QPoint> points;
+    for (int i = 0; i < numVertices; ++i) {
+        int vx, vy;
+        iss >> vx >> vy;
+        points.append(QPoint(vx, vy));
+    }
+
+    return new Polygon(id, points, QPoint(x, y), QPen(QColor(QString::fromStdString(penColor))), QBrush(QColor(QString::fromStdString(brushColor))));
 }

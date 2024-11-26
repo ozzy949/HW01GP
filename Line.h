@@ -1,13 +1,10 @@
 #ifndef LINE_H_
 #define LINE_H_
 
-#include "shape.h"
+#include "Shape.h"
 #include <QPainter>
 #include <QPoint>
 #include <QSize>
-
-
-
 
 class Line : public Shape {
     QPoint startPoint, endPoint;
@@ -21,9 +18,9 @@ public:
          const std::string& color = "black",
          int rotationAngle = 0)
         : Shape("Line", start.x(), start.y(), color, rotationAngle),
-          startPoint(start),
-          endPoint(end),
-          pen(pen) {}
+        startPoint(start),
+        endPoint(end),
+        pen(pen) {}
 
     void setStartPoint(const QPoint& point) { startPoint = point; }
     void setEndPoint(const QPoint& point) { endPoint = point; }
@@ -38,11 +35,10 @@ public:
         painter.drawLine(startPoint, endPoint);
     }
 
-    std::string getStringFormat() const override {
-        return Shape::getStringFormat() + " " +
-               to_string(startPoint.x()) + " " + to_string(startPoint.y()) + " " +
-               to_string(endPoint.x()) + " " + to_string(endPoint.y());
-    }
+    std::string toString() const override;
+
+    // Function to instantiate class from String
+    static Line* fromString(const std::string& str);
 };
 
 #endif

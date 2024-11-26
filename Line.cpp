@@ -14,3 +14,19 @@ void GraphicsWidget::paintEvent(QPaintEvent* event) {
     line.draw(painter);
 }
 
+std::string Line::toString() const {
+    std::ostringstream oss;
+    oss << "Line " << getId() << " " << startPoint.x() << " " << startPoint.y() << " "
+        << endPoint.x() << " " << endPoint.y() << " " << pen.color().name().toStdString();
+    return oss.str();
+}
+
+Line* Line::fromString(const std::string& str) {
+    std::istringstream iss(str);
+    std::string type, penColor;
+    int id, x1, y1, x2, y2;
+    iss >> type >> id >> x1 >> y1 >> x2 >> y2 >> penColor;
+
+    return new Line(id, QPoint(x1, y1), QPoint(x2, y2),
+                    QPen(QColor(QString::fromStdString(penColor))));
+}

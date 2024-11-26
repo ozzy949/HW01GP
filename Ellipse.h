@@ -1,4 +1,8 @@
-#include "shape.h"
+#ifndef ELLIPSE_H
+#define ELLIPSE_H
+
+
+#include "Shape.h"
 #include <QPainter>
 #include <QPoint>
 #include <QSize>
@@ -37,4 +41,11 @@ public:
     double area() const override {
         return M_PI * radii.width() * radii.height();
     }
+
+    std::string toString() const override;
+
+    // Function to instantiate class from String
+    static Ellipse* fromString(const std::string& str);
 };
+
+#endif

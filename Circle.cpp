@@ -14,3 +14,22 @@ void GraphicsWidget::paintEvent(QPaintEvent* event) {
     // Render the Circle
     circle.draw(painter);
 }
+
+std::string Circle::toString() const {
+    std::ostringstream oss;
+    oss << "Circle " << getId() << " " << center.x() << " " << center.y() << " "
+        << pen.color().name().toStdString() << " " << brush.color().name().toStdString()
+        << " " << radius;
+    return oss.str();
+}
+
+Circle* Circle::fromString(const std::string& str) {
+    std::istringstream iss(str);
+    std::string type, penColor, brushColor;
+    int id, x, y, r;
+    iss >> type >> id >> x >> y >> penColor >> brushColor >> r;
+
+    return new Circle(id, QPoint(x, y), r,
+                      QPen(QColor(QString::fromStdString(penColor))),
+                      QBrush(QColor(QString::fromStdString(brushColor))));
+}
