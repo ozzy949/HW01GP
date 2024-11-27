@@ -1,11 +1,11 @@
-#include "window.h"
+#include "loginwindow.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    window w;
+    LoginWindow w;
     w.show();
     return a.exec();
 }
