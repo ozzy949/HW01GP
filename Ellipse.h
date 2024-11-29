@@ -14,8 +14,7 @@ private:
 
 public:
     // Constructor
-    Ellipse(int id, QPen p, QBrush b, QPoint c, QSize r)
-        : Shape(id, p, b), center(c), radii(r) {}
+    Ellipse(int id, const QPen p, const QBrush b, const QPoint c, const QSize r);
 
     // Override draw method
     void draw(QPainter& painter) const override {
@@ -25,12 +24,12 @@ public:
     }
 
     // Override move method
-    void move(int dx, int dy) override {
-        center += QPoint(dx, dy);
+    void move(const QPoint& newPosition) override {
+        center = newPosition;
     }
 
     // Override perimeter method
-    double perimeter() const override {
+    double perimeter() const override{
         // Approximation using Ramanujan's formula
         double a = radii.width();
         double b = radii.height();

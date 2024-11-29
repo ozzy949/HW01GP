@@ -1,7 +1,7 @@
 #include "Rectangle.h"
 
 // Constructor
-Rectangle::Rectangle(int id, QPen pen, QBrush brush, const QPoint& topLeft, int width, int height)
+Rectangle::Rectangle(int id, QPen pen, QBrush brush, const QPoint& topLeft, int height, int width)
     : Shape(id, topLeft), width(width), height(height)
 {
     this->pen = pen;
@@ -31,19 +31,55 @@ double Rectangle::area() const {
 
 std::string Rectangle::toString() const {
     std::ostringstream oss;
-    oss << "Rectangle " << getId() << " " << topLeft.x() << " " << topLeft.y() << " "
-        << pen.color().name().toStdString() << " " << brush.color().name().toStdString()
-        << " " << width << " " << height;
+
+    oss << "ShapeId: " << getId()
+        << "\nShapeType: Rectangle"
+        << "\nShapeDimensions: " << topLeft.x() << " " << topLeft.y() << " " << height << " " << width
+        << "\nPenColor: " << pen.color().name().toStdString()
+        << "\nPenWidth: " << pen.width()
+        << "\nPenStyle: " << Shape::penStyleToString(pen.style())
+        << "\nPenCapStyle: " << Shape::penCapStyleToString(pen.capStyle())
+        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(pen.joinStyle())
+        << "\nBrushColor: " << brush.color().name().toStdString()
+        << "\nBrushStyle: " << Shape::brushStyleToString(brush.style())
+        << "\n";
+
     return oss.str();
 }
 
 Rectangle* Rectangle::fromString(const std::string& str) {
     std::istringstream iss(str);
-    std::string type, penColor, brushColor;
-    int id, x, y, w, h;
-    iss >> type >> id >> x >> y >> penColor >> brushColor >> w >> h;
+    std::string label, type;
+    int id, x1, y1, height, width;
+    std::string penColor;
+    int penWidth;
+    std::string penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle;
 
-    return new Rectangle(id, QPen(QColor(QString::fromStdString(penColor))),
-                         QBrush(QColor(QString::fromStdString(brushColor))),
-                         QPoint(x, y), w, h);
+    // Parse the labeled data
+    iss >> label >> id;
+    iss >> label >> type;
+    iss >> label >> x1 >> y1 >> height >> width;
+    iss >> label >> penColor;
+    iss >> label >> penWidth;
+    iss >> label >> penStyle;
+    iss >> label >> penCapStyle;
+    iss >> label >> penJoinStyle;
+    iss >> label >> brushColor;
+    iss >> label >> brushStyle;
+
+    // Create temporary pen object
+    QPen t_pen;
+    t_pen.setColor(QString::fromStdString(penColor));
+    t_pen.setWidth(penWidth);
+    t_pen.setStyle(Shape::stringToPenStyle(penStyle));
+    t_pen.setCapStyle(Shape::stringToPenCapStyle(penCapStyle));
+    t_pen.setJoinStyle(Shape::stringToPenJoinStyle(penJoinStyle));
+
+    // Create temporary brush object
+    QBrush t_brush;
+    t_brush.setColor(QString::fromStdString(brushColor));
+    t_brush.setStyle(Shape::stringToBrushStyle(brushStyle));
+
+    // Create and return the Line object
+    return new Rectangle(id, t_pen, t_brush, QPoint(x1, y1), height, width);
 }

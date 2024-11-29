@@ -11,21 +11,11 @@
 
 class Circle : public Shape {
     int radius;
-    QPen pen;
-    QBrush brush;
+    QPoint center;
 
 public:
-    Circle(int id,
-           const QPoint& center,
-           int radius,
-           const QPen& pen,
-           const QBrush& brush,
-           const std::string& color = "black",
-           int rotationAngle = 0)
-        : Shape("Circle", center.x(), center.y(), color, rotationAngle),
-        radius(radius),
-        pen(pen),
-        brush(brush) {}
+    Circle(int id, const QPoint& position, const int& radius,
+           const QPen& pen, const QBrush& brush);
 
     void setRadius(int r) { radius = r; }
     void setPenColor(const QColor& color) { pen.setColor(color); }
@@ -34,11 +24,10 @@ public:
     void setBrushColor(const QColor& color) { brush.setColor(color); }
     void setBrushStyle(Qt::BrushStyle style) { brush.setStyle(style); }
 
-    void draw(QPainter& painter) override {
-        painter.setPen(pen);
-        painter.setBrush(brush);
-        painter.drawEllipse(QPoint(getXPos(), getYPos()), radius, radius);
-    }
+    void draw(QPainter& painter) const override;
+    void move(const QPoint& newPosition) override;
+    double perimeter() const override;
+    double area() const override;
 
     std::string toString() const override;
 

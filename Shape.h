@@ -5,6 +5,7 @@
 #include <QBrush>
 #include <QPainter>
 #include <QString>
+#include <sstream>
 
 // Abstract Base Class for Shape
 class Shape
@@ -41,6 +42,22 @@ protected:
     QPoint position;     // Position of the shape
     QPen pen;            // Pen properties
     QBrush brush;        // Brush properties
+
+    // toString() helper functions
+    // Qt enums to String
+    std::string penStyleToString(Qt::PenStyle style) const;
+    std::string penCapStyleToString(Qt::PenCapStyle capStyle) const;
+    std::string penJoinStyleToString(Qt::PenJoinStyle joinStyle) const;
+    std::string brushStyleToString(Qt::BrushStyle brushStyle) const;
+
+
+    // String to Qt enums
+    static Qt::PenStyle stringToPenStyle(const std::string& style);
+    static Qt::PenCapStyle stringToPenCapStyle(const std::string& style);
+    static Qt::PenJoinStyle stringToPenJoinStyle(const std::string& style);
+    static Qt::BrushStyle stringToBrushStyle(const std::string& styleStr);
+
+
 };
 
 #endif

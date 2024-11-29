@@ -8,19 +8,10 @@
 
 class Line : public Shape {
     QPoint startPoint, endPoint;
-    QPen pen;
 
 public:
-    Line(int id,
-         const QPoint& start,
-         const QPoint& end,
-         const QPen& pen,
-         const std::string& color = "black",
-         int rotationAngle = 0)
-        : Shape("Line", start.x(), start.y(), color, rotationAngle),
-        startPoint(start),
-        endPoint(end),
-        pen(pen) {}
+    Line(int id, const QPoint& p1, const QPoint& p2, const QPoint& position,
+        const QPen& pen);
 
     void setStartPoint(const QPoint& point) { startPoint = point; }
     void setEndPoint(const QPoint& point) { endPoint = point; }
@@ -30,10 +21,10 @@ public:
     void setPenCapStyle(Qt::PenCapStyle capStyle) { pen.setCapStyle(capStyle); }
     void setPenJoinStyle(Qt::PenJoinStyle joinStyle) { pen.setJoinStyle(joinStyle); }
 
-    void draw(QPainter& painter) override {
-        painter.setPen(pen);
-        painter.drawLine(startPoint, endPoint);
-    }
+    void draw(QPainter& painter) const override;
+    void move(const QPoint& newPosition) override;
+    double perimeter() const override;
+    double area() const override;
 
     std::string toString() const override;
 

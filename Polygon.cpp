@@ -57,28 +57,68 @@ double Polygon::area() const {
 
 std::string Polygon::toString() const {
     std::ostringstream oss;
-    oss << "Polygon " << getId() << " " << getPosition().x() << " " << getPosition().y() << " "
-        << getPen().color().name().toStdString() << " "
-        << getBrush().color().name().toStdString() << " "
-        << vertices.size();
-    for (const QPoint& vertex : vertices) {
-        oss << " " << vertex.x() << " " << vertex.y();
-    }
+
+    oss << "ShapeId: " << getId()
+        << "\nShapeType: Polygon"
+        << "\nShapeDimensions: ";
+        for (int i = 0; i < vertices.size(); ++i) {
+            oss << vertices[i].x() << " " << vertices[i].y() << " ";
+        }
+    oss << "\nPenColor: " << pen.color().name().toStdString()
+        << "\nPenWidth: " << pen.width()
+        << "\nPenStyle: " << Shape::penStyleToString(pen.style())
+        << "\nPenCapStyle: " << Shape::penCapStyleToString(pen.capStyle())
+        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(pen.joinStyle())
+        << "\nBrushColor: " << brush.color().name().toStdString()
+        << "\nBrushStyle: " << Shape::brushStyleToString(brush.style())
+        << "\n";
+
     return oss.str();
 }
 
 Polygon* Polygon::fromString(const std::string& str) {
     std::istringstream iss(str);
-    std::string type, penColor, brushColor;
-    int id, x, y, numVertices;
-    iss >> type >> id >> x >> y >> penColor >> brushColor >> numVertices;
+    std::string label, type;
+    int id;
+    QVector<QPoint> vertices;
+    std::string penColor;
+    int penWidth;
+    std::string penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle;
 
-    QVector<QPoint> points;
-    for (int i = 0; i < numVertices; ++i) {
-        int vx, vy;
-        iss >> vx >> vy;
-        points.append(QPoint(vx, vy));
+    // Parse the labeled data
+    iss >> label >> id;
+    iss >> label >> type;
+    while (iss >> label) {
+        int x, y;
+        if (label == "PenColor:") break;
+
+        iss >> x >> y;
+        vertices.append(QPoint(x, y));
     }
+    iss /*>> label*/ >> penColor;
+    iss >> label >> penWidth;
+    iss >> label >> penStyle;
+    iss >> label >> penCapStyle;
+    iss >> label >> penJoinStyle;
+    iss >> label >> brushColor;
+    iss >> label >> brushStyle;
 
-    return new Polygon(id, points, QPoint(x, y), QPen(QColor(QString::fromStdString(penColor))), QBrush(QColor(QString::fromStdString(brushColor))));
+    // Create temporary pen object
+    QPen t_pen;
+    t_pen.setColor(QString::fromStdString(penColor));
+    t_pen.setWidth(penWidth);
+    t_pen.setStyle(Shape::stringToPenStyle(penStyle));
+    t_pen.setCapStyle(Shape::stringToPenCapStyle(penCapStyle));
+    t_pen.setJoinStyle(Shape::stringToPenJoinStyle(penJoinStyle));
+
+    // Create temporary brush object
+    QBrush t_brush;
+    t_brush.setColor(QString::fromStdString(brushColor));
+    t_brush.setStyle(Shape::stringToBrushStyle(brushStyle));
+
+    QPoint position = vertices.empty() ? QPoint(0, 0) : vertices[0];
+
+    // Create and return the Polygon object
+    return new Polygon(id, vertices, position, t_pen, t_brush);
+
 }

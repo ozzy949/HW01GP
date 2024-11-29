@@ -16,8 +16,7 @@ private:
 
 public:
     // Constructor
-    Rectangle(int id, QPen pen, QBrush brush, const QPoint& topLeft, int width, int height)
-        : Shape(id, topLeft), width(width), height(height) {}
+    Rectangle(int id, QPen pen, QBrush brush, const QPoint& topLeft, int width, int height);
 
     // Virtual functions
     void draw(QPainter& painter) const override;

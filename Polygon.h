@@ -24,7 +24,7 @@ public:
     std::string toString() const override;
 
     // Function to instantiate class from String
-    static Polygon* fromString(const std::string& str);
+    static Polygon* fromString(const std::  string& str);
 
 private:
     QVector<QPoint> vertices; // Vertices of the polygon relative to the position

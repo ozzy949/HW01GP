@@ -1,4 +1,5 @@
 #include "Line.h"
+#include <sstream>
 
 
 void GraphicsWidget::paintEvent(QPaintEvent* event) {
@@ -16,17 +17,47 @@ void GraphicsWidget::paintEvent(QPaintEvent* event) {
 
 std::string Line::toString() const {
     std::ostringstream oss;
-    oss << "Line " << getId() << " " << startPoint.x() << " " << startPoint.y() << " "
-        << endPoint.x() << " " << endPoint.y() << " " << pen.color().name().toStdString();
+
+    oss << "ShapeId: " << getId()
+        << "\nShapeType: Line"
+        << "\nShapeDimensions: " << startPoint.x() << " " << startPoint.y() << " " << endPoint.x() << " " << endPoint.y()
+        << "\nPenColor: " << pen.color().name().toStdString()
+        << "\nPenWidth: " << pen.width()
+        << "\nPenStyle: " << Shape::penStyleToString(pen.style())
+        << "\nPenCapStyle: " << Shape::penCapStyleToString(pen.capStyle())
+        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(pen.joinStyle())
+        << "\n";
+
     return oss.str();
 }
 
 Line* Line::fromString(const std::string& str) {
     std::istringstream iss(str);
-    std::string type, penColor;
+    std::string label, type;
     int id, x1, y1, x2, y2;
-    iss >> type >> id >> x1 >> y1 >> x2 >> y2 >> penColor;
+    std::string penColor;
+    int penWidth;
+    std::string penStyle, penCapStyle, penJoinStyle;
 
-    return new Line(id, QPoint(x1, y1), QPoint(x2, y2),
-                    QPen(QColor(QString::fromStdString(penColor))));
+    // Parse the labeled data
+    iss >> label >> id;
+    iss >> label >> type;
+    iss >> label >> x1 >> y1 >> x2 >> y2;
+    iss >> label >> penColor;
+    iss >> label >> penWidth;
+    iss >> label >> penStyle;
+    iss >> label >> penCapStyle;
+    iss >> label >> penJoinStyle;
+
+    // Create temporary pen object
+    QPen t_pen;
+    t_pen.setColor(QString::fromStdString(penColor));
+    t_pen.setWidth(penWidth);
+    t_pen.setStyle(Shape::stringToPenStyle(penStyle));
+    t_pen.setCapStyle(Shape::stringToPenCapStyle(penCapStyle));
+    t_pen.setJoinStyle(Shape::stringToPenJoinStyle(penJoinStyle));
+
+    // Create and return the Line object
+    return new Line(id, QPoint(x1, y1), QPoint(x2, y2), QPoint(x1, y1), t_pen);
 }
+

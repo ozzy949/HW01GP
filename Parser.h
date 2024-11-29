@@ -37,8 +37,9 @@ public:
 
                 // For each line, get the shape type
                 std::istringstream iss(line);
+                int id;     // Not actually used, only meant to access the shape type
                 std::string type;
-                iss >> type;
+                iss >> id >> type;
 
                 // Create shape based off type
                 if (type == "Rectangle") {
