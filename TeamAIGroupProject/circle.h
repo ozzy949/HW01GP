@@ -19,6 +19,12 @@ public:
     // Get the bounding rectangle for collision detection
     QRect getRect() const;
 
+    // Shape Serialization
+    std::string toString() const override;
+
+    // Function to instantiate class from String
+    static Circle* fromString(const std::string& str);
+
 private:
     int radius;  // Radius of the circle
 };

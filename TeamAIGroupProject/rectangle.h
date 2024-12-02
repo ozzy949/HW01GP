@@ -15,6 +15,12 @@ public:
     double area() const override;
     QRect getRect() const override;  // Get the bounding box of the rectangle
 
+    // Shape Serialization
+    std::string toString() const override;
+
+    // Function to instantiate class from String
+    static Rectangle* fromString(const std::string& str);
+
 private:
     QRect rect;  // The QRect representing the rectangle's position and size
 };

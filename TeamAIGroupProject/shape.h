@@ -1,6 +1,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+#include <sstream>
 #include <QPen>
 #include <QBrush>
 #include <QPainter>
@@ -24,6 +25,9 @@ public:
     virtual double perimeter() const = 0;
     virtual double area() const = 0;
 
+    // Serialization
+    virtual std::string toString() const = 0;
+
     // Getters
     int getId() const;
     const QPoint& getPosition() const;
@@ -43,6 +47,20 @@ protected:
     QPoint position;     // Position of the shape
     QPen pen;            // Pen properties
     QBrush brush;        // Brush properties
+
+    // toString() helper functions
+    // Qt enums to String
+    std::string penStyleToString(Qt::PenStyle style) const;
+    std::string penCapStyleToString(Qt::PenCapStyle capStyle) const;
+    std::string penJoinStyleToString(Qt::PenJoinStyle joinStyle) const;
+    std::string brushStyleToString(Qt::BrushStyle brushStyle) const;
+
+
+    // String to Qt enums
+    static Qt::PenStyle stringToPenStyle(const std::string& style);
+    static Qt::PenCapStyle stringToPenCapStyle(const std::string& style);
+    static Qt::PenJoinStyle stringToPenJoinStyle(const std::string& style);
+    static Qt::BrushStyle stringToBrushStyle(const std::string& styleStr);
 };
 
 #endif
