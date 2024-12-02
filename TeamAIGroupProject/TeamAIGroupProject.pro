@@ -9,13 +9,24 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    circle.cpp \
+    drawarea.cpp \
     main.cpp \
     loginwindow.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    rectangle.cpp \
+    shape.cpp \
+    shapevector.cpp
 
 HEADERS += \
+    circle.h \
+    drawarea.h \
     loginwindow.h \
-    mainwindow.h
+    mainwindow.h \
+    rectangle.h \
+    shape.h \
+    shapevector.h \
+    vector.h
 
 FORMS += \
     loginwindow.ui \
@@ -25,3 +36,5 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
