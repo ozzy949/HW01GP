@@ -9,7 +9,10 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Ellipse.cpp \
+    Line.cpp \
     Polygon.cpp \
+    Text.cpp \
     circle.cpp \
     drawarea.cpp \
     main.cpp \
@@ -20,8 +23,11 @@ SOURCES += \
     shapevector.cpp
 
 HEADERS += \
+    Ellipse.h \
+    Line.h \
     Parser.h \
     Polygon.h \
+    Text.h \
     circle.h \
     drawarea.h \
     loginwindow.h \

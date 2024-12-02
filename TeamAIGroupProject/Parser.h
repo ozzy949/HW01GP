@@ -4,9 +4,9 @@
 #include "Polygon.h"
 #include "Rectangle.h"
 #include "Circle.h"
-//#include "Line.h"
-//#include "Ellipse.h"
-//#include "Text.h"
+#include "Line.h"
+#include "Ellipse.h"
+#include "Text.h"
 
 #include <fstream>
 #include <vector>
@@ -46,17 +46,15 @@ public:
                     shapes.push_back(Circle::fromString(line));
                 } else if (type == "Rectangle") {
                     shapes.push_back(Rectangle::fromString(line));
-                }
-                else if (type == "Polygon") {
+                } else if (type == "Polygon") {
                     shapes.push_back(Polygon::fromString(line));
-                } /*else if (type == "Line") {
+                } else if (type == "Line") {
                     shapes.push_back(Line::fromString(line));
                 } else if (type == "Ellipse") {
                     shapes.push_back(Ellipse::fromString(line));
                 } else if (type == "Text") {
                     shapes.push_back(Text::fromString(line));
                 }
-                */
             }
         }
     }
