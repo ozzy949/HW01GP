@@ -1,0 +1,28 @@
+@startuml Overview
+skinparam classAttributeIconSize 0
+
+package "Shapes" {
+  !include types/Shape.puml
+  !include types/Circle.puml
+  !include types/Rectangle.puml
+  !include types/Polygon.puml
+  !include types/Ellipse.puml
+  !include types/Line.puml
+  !include types/Text.puml
+}
+
+package "Shape Containers & Managers" {
+  !include types/ShapeVector.puml
+  !include types/DrawArea.puml
+  !include types/Vector.puml
+}
+
+package "Forms" {
+  !include types/LoginWindow.puml
+  !include types/MainWindow.puml
+}
+
+package "Utility" {
+  !include types/Parser.puml
+}
+@enduml
