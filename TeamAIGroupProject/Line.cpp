@@ -1,17 +1,22 @@
-#include "Line.h"
+#include "line.h"
 #include <sstream>
+#include <QPainter>
+#include <QDebug>
 
 Line::Line(int id, const QPoint& p1, const QPoint& p2, const QPoint& position)
     : Shape(id, position), startPoint(p1), endPoint(p2) {}
 
-
 void Line::draw(QPainter& painter) const {
-    painter.setPen(pen);
-    painter.drawLine(startPoint + position, endPoint + position);
+    qDebug() << "Drawing Line from" << startPoint + getPosition() << "to" << endPoint + getPosition();
+    painter.setPen(getPen());
+    painter.drawLine(startPoint + getPosition(), endPoint + getPosition());
 }
 
 void Line::move(const QPoint& newPosition) {
-    position = newPosition;
+    QPoint offset = newPosition - getPosition();
+    startPoint += offset;
+    endPoint += offset;
+    setPosition(newPosition);
 }
 
 double Line::perimeter() const {
@@ -19,19 +24,14 @@ double Line::perimeter() const {
 }
 
 double Line::area() const {
-    return 0.0; // A line has no area
+    return 0.0;  // A line has no area
 }
 
-// Get the bounding rectangle for collision detection
 QRect Line::getRect() const {
-    // Adjust the points based on the position
-    QPoint adjustedStart = startPoint + position;
-    QPoint adjustedEnd = endPoint + position;
-
-    // Use QRect to construct a bounding rectangle
+    QPoint adjustedStart = startPoint + getPosition();
+    QPoint adjustedEnd = endPoint + getPosition();
     return QRect(adjustedStart, adjustedEnd).normalized();
 }
-
 
 std::string Line::toString() const {
     std::ostringstream oss;
@@ -39,11 +39,11 @@ std::string Line::toString() const {
     oss << "ShapeId: " << getId()
         << "\nShapeType: Line"
         << "\nShapeDimensions: " << startPoint.x() << " " << startPoint.y() << " " << endPoint.x() << " " << endPoint.y()
-        << "\nPenColor: " << pen.color().name().toStdString()
-        << "\nPenWidth: " << pen.width()
-        << "\nPenStyle: " << Shape::penStyleToString(pen.style())
-        << "\nPenCapStyle: " << Shape::penCapStyleToString(pen.capStyle())
-        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(pen.joinStyle())
+        << "\nPenColor: " << getPen().color().name().toStdString()
+        << "\nPenWidth: " << getPen().width()
+        << "\nPenStyle: " << Shape::penStyleToString(getPen().style())
+        << "\nPenCapStyle: " << Shape::penCapStyleToString(getPen().capStyle())
+        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(getPen().joinStyle())
         << "\n";
 
     return oss.str();
@@ -76,7 +76,7 @@ Line* Line::fromString(const std::string& str) {
     t_pen.setJoinStyle(Shape::stringToPenJoinStyle(penJoinStyle));
 
     // Create and return the Line object
-    Line* t_Line = new Line(id, QPoint(x1, y1), QPoint(x2, y2), QPoint(x1, y1));
+    Line* t_Line = new Line(id, QPoint(x1, y1), QPoint(x2, y2), QPoint(0, 0));
     t_Line->setPen(t_pen);
 
     return t_Line;

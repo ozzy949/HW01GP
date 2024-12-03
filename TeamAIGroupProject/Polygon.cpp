@@ -1,5 +1,6 @@
-#include "Polygon.h"
+#include "polygon.h"
 #include <cmath>
+#include <sstream>
 
 // Constructor
 Polygon::Polygon(int id, const QVector<QPoint>& points, const QPoint& position)
@@ -7,13 +8,13 @@ Polygon::Polygon(int id, const QVector<QPoint>& points, const QPoint& position)
 
 // Overridden draw function
 void Polygon::draw(QPainter& painter) const {
-    painter.setPen(pen);
-    painter.setBrush(brush);
+    painter.setPen(getPen());
+    painter.setBrush(getBrush());
 
     // Translate points based on the current position
     QVector<QPoint> translatedPoints;
     for (const QPoint& vertex : vertices) {
-        translatedPoints.append(vertex + position);
+        translatedPoints.append(vertex + getPosition());
     }
 
     // Draw the polygon
@@ -22,7 +23,11 @@ void Polygon::draw(QPainter& painter) const {
 
 // Overridden move function
 void Polygon::move(const QPoint& newPosition) {
-    position = newPosition;
+    QPoint offset = newPosition - getPosition();
+    for (QPoint& vertex : vertices) {
+        vertex += offset; // Update each vertex by the offset
+    }
+    setPosition(newPosition); // Update the position in the base class
 }
 
 // Overridden perimeter function
@@ -66,7 +71,7 @@ QRect Polygon::getRect() const {
         maxY = std::max(maxY, vertex.y());
     }
 
-    return QRect(QPoint(minX, minY) + position, QPoint(maxX, maxY) + position);
+    return QRect(QPoint(minX, minY) + getPosition(), QPoint(maxX, maxY) + getPosition());
 }
 
 std::string Polygon::toString() const {
@@ -75,16 +80,16 @@ std::string Polygon::toString() const {
     oss << "ShapeId: " << getId()
         << "\nShapeType: Polygon"
         << "\nShapeDimensions: ";
-    for (int i = 0; i < vertices.size() - 1; ++i) {
-        oss << vertices[i].x() << " " << vertices[i].y() << " ";
+    for (const QPoint& vertex : vertices) {
+        oss << vertex.x() << " " << vertex.y() << " ";
     }
-    oss << "\nPenColor: " << pen.color().name().toStdString()
-        << "\nPenWidth: " << pen.width()
-        << "\nPenStyle: " << Shape::penStyleToString(pen.style())
-        << "\nPenCapStyle: " << Shape::penCapStyleToString(pen.capStyle())
-        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(pen.joinStyle())
-        << "\nBrushColor: " << brush.color().name().toStdString()
-        << "\nBrushStyle: " << Shape::brushStyleToString(brush.style())
+    oss << "\nPenColor: " << getPen().color().name().toStdString()
+        << "\nPenWidth: " << getPen().width()
+        << "\nPenStyle: " << Shape::penStyleToString(getPen().style())
+        << "\nPenCapStyle: " << Shape::penCapStyleToString(getPen().capStyle())
+        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(getPen().joinStyle())
+        << "\nBrushColor: " << getBrush().color().name().toStdString()
+        << "\nBrushStyle: " << Shape::brushStyleToString(getBrush().style())
         << "\n";
 
     return oss.str();
@@ -103,13 +108,12 @@ Polygon* Polygon::fromString(const std::string& str) {
     iss >> label >> id;
     iss >> label >> type;
     while (iss >> label) {
-        int x, y;
         if (label == "PenColor:") break;
-
+        int x, y;
         iss >> x >> y;
         vertices.append(QPoint(x, y));
     }
-    iss /*>> label*/ >> penColor;
+    iss >> penColor;
     iss >> label >> penWidth;
     iss >> label >> penStyle;
     iss >> label >> penCapStyle;
@@ -133,10 +137,9 @@ Polygon* Polygon::fromString(const std::string& str) {
     QPoint position = vertices.empty() ? QPoint(0, 0) : vertices[0];
 
     // Create and return the Polygon object
-    Polygon* t_Polygon = new Polygon(id, vertices, position);
-    t_Polygon->setPen(t_pen);
-    t_Polygon->setBrush(t_brush);
+    Polygon* t_polygon = new Polygon(id, vertices, position);
+    t_polygon->setPen(t_pen);
+    t_polygon->setBrush(t_brush);
 
-    return t_Polygon;
-
+    return t_polygon;
 }

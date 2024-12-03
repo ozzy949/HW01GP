@@ -1,20 +1,27 @@
-#include "Ellipse.h"
+#include "ellipse.h"
+#include <QPainter>
+#include <QDebug>
+#include <cmath>
 
-Ellipse::Ellipse(int id, const QPoint cen, const QSize r)
-    : Shape(id, cen), center(cen), radii(r) {}
+// Constructor implementation
+Ellipse::Ellipse(int id, const QPoint& center, const QSize& radii)
+    : Shape(id, center), center(center), radii(radii) {}
 
+// Draw function: Draws the ellipse on the painter
 void Ellipse::draw(QPainter& painter) const {
-    painter.setPen(pen);
-    painter.setBrush(brush);
+    qDebug() << "Drawing Ellipse"; // Debugging output
+    painter.setPen(getPen());     // Set the pen for the ellipse
+    painter.setBrush(getBrush()); // Set the brush for the ellipse
     painter.drawEllipse(center, radii.width(), radii.height());
 }
 
-// Override move method
-void Ellipse::move(const QPoint& newPosition)  {
-    center = newPosition;
+// Move function: Moves the ellipse by updating its position
+void Ellipse::move(const QPoint& newPosition) {
+    center = newPosition; // Update the center of the ellipse
+    setPosition(newPosition); // Update the position in the base class
 }
 
-// Override perimeter method
+// Perimeter function: Returns an approximate perimeter of the ellipse
 double Ellipse::perimeter() const {
     // Approximation using Ramanujan's formula
     double a = radii.width();
@@ -22,39 +29,39 @@ double Ellipse::perimeter() const {
     return M_PI * (3 * (a + b) - std::sqrt((3 * a + b) * (a + 3 * b)));
 }
 
-// Override area method
+// Area function: Returns the area of the ellipse
 double Ellipse::area() const {
-    return M_PI * radii.width() * radii.height();
+    return M_PI * radii.width() * radii.height(); // π * a * b
 }
 
+// getRect function: Returns the bounding rectangle of the ellipse
 QRect Ellipse::getRect() const {
-    // Calculate the top-left and bottom-right corners of the bounding rectangle
     QPoint topLeft = center - QPoint(radii.width(), radii.height());
     QPoint bottomRight = center + QPoint(radii.width(), radii.height());
-
-    // Return the bounding rectangle, ensuring it is normalized
-    return QRect(topLeft, bottomRight).normalized();
+    return QRect(topLeft, bottomRight).normalized(); // Ensure rectangle is normalized
 }
 
-
+// toString function: Serializes the ellipse's data to a string
 std::string Ellipse::toString() const {
     std::ostringstream oss;
 
     oss << "ShapeId: " << getId()
         << "\nShapeType: Ellipse"
-        << "\nShapeDimensions: " << center.x() << " " << center.y() << " " << radii.width() << " " << radii.height();
-    oss << "\nPenColor: " << pen.color().name().toStdString()
-        << "\nPenWidth: " << pen.width()
-        << "\nPenStyle: " << Shape::penStyleToString(pen.style())
-        << "\nPenCapStyle: " << Shape::penCapStyleToString(pen.capStyle())
-        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(pen.joinStyle())
-        << "\nBrushColor: " << brush.color().name().toStdString()
-        << "\nBrushStyle: " << Shape::brushStyleToString(brush.style())
+        << "\nShapeDimensions: " << center.x() << " " << center.y() << " "
+        << radii.width() << " " << radii.height()
+        << "\nPenColor: " << getPen().color().name().toStdString()
+        << "\nPenWidth: " << getPen().width()
+        << "\nPenStyle: " << Shape::penStyleToString(getPen().style())
+        << "\nPenCapStyle: " << Shape::penCapStyleToString(getPen().capStyle())
+        << "\nPenJoinStyle: " << Shape::penJoinStyleToString(getPen().joinStyle())
+        << "\nBrushColor: " << getBrush().color().name().toStdString()
+        << "\nBrushStyle: " << Shape::brushStyleToString(getBrush().style())
         << "\n";
 
     return oss.str();
 }
 
+// fromString function: Deserializes a string to create an Ellipse object
 Ellipse* Ellipse::fromString(const std::string& str) {
     std::istringstream iss(str);
     std::string label, type;
@@ -88,10 +95,10 @@ Ellipse* Ellipse::fromString(const std::string& str) {
     t_brush.setColor(QString::fromStdString(brushColor));
     t_brush.setStyle(Shape::stringToBrushStyle(brushStyle));
 
-    // Create and return the Line object
-    Ellipse* t_Ellipse = new Ellipse(id, QPoint(x1, y1), QSize(rWidth, rHeight));
-    t_Ellipse->setPen(t_pen);
-    t_Ellipse->setBrush(t_brush);
+    // Create and return the Ellipse object
+    Ellipse* t_ellipse = new Ellipse(id, QPoint(x1, y1), QSize(rWidth, rHeight));
+    t_ellipse->setPen(t_pen);
+    t_ellipse->setBrush(t_brush);
 
-    return t_Ellipse;
+    return t_ellipse;
 }

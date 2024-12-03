@@ -4,8 +4,12 @@
 #include "shapevector.h"
 #include "circle.h"
 #include "rectangle.h"
+#include "ellipse.h"
+#include "line.h"
+#include "polygon.h"
 #include <QWidget>
 #include <QMouseEvent>
+#include <QVector>
 
 /****************************************
  * DrawArea Class
@@ -29,9 +33,13 @@ signals:
     void shapeDrawn(Shape* shape);
 
 private:
-    QString currentShapeType;
-    QPoint startPoint;
-    ShapeVector shapes;  // Use ShapeVector to store shapes
+    QString currentShapeType;           // Current shape type selected
+    QPoint startPoint;                  // Starting point for shapes
+    ShapeVector shapes;                 // Use ShapeVector to store shapes
+
+    // Variables for Polygon Drawing
+    bool isDrawingPolygon = false;      // Tracks whether a polygon is being drawn
+    QVector<QPoint> polygonVertices;    // Stores vertices of the polygon
 };
 
 #endif // DRAWAREA_H
