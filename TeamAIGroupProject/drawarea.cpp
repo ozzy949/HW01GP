@@ -3,9 +3,10 @@
 #include "ellipse.h"
 #include "line.h"
 #include "polygon.h"
+#include "polyline.h"  // Include Polyline header
 
 DrawArea::DrawArea(QWidget* parent)
-    : QWidget(parent), currentShapeType("Circle"), isDrawingPolygon(false) {
+    : QWidget(parent), currentShapeType("Circle"), isDrawingPolygon(false), isDrawingPolyline(false) {
     qDebug() << "DrawArea constructor called";
 }
 
@@ -13,10 +14,12 @@ void DrawArea::setShapeType(const QString& shapeType) {
     qDebug() << "Initial setShapeType called - Shape type: " << currentShapeType;
     currentShapeType = shapeType;
 
-    // Reset polygon drawing if the shape type changes
-    if (currentShapeType != "Polygon") {
+    // Reset polygon and polyline drawing if the shape type changes
+    if (currentShapeType != "Polygon" && currentShapeType != "Polyline") {
         isDrawingPolygon = false;
+        isDrawingPolyline = false;
         polygonVertices.clear();
+        polylinePoints.clear();
     }
 
     qDebug() << "After setShapeType called - Shape type: " << currentShapeType;
@@ -44,6 +47,19 @@ void DrawArea::paintEvent(QPaintEvent* /*event*/) {
 
         painter.drawPolygon(translatedPoints);
     }
+
+    // Draw in-progress polyline if necessary
+    if (isDrawingPolyline && !polylinePoints.isEmpty()) {
+        painter.setPen(Qt::DashLine); // Temporary dashed line
+        painter.setBrush(Qt::NoBrush);
+
+        QVector<QPoint> translatedPoints;
+        for (const QPoint& point : polylinePoints) {
+            translatedPoints.append(point);
+        }
+
+        painter.drawPolyline(translatedPoints);
+    }
 }
 
 void DrawArea::mousePressEvent(QMouseEvent* event) {
@@ -61,6 +77,17 @@ void DrawArea::mousePressEvent(QMouseEvent* event) {
         // Add vertex to the in-progress polygon
         polygonVertices.append(startPoint);
         update(); // Redraw the area to show the new vertex
+    }
+    else if (currentShapeType == "Polyline") {
+        if (!isDrawingPolyline) {
+            // Start drawing a new polyline
+            isDrawingPolyline = true;
+            polylinePoints.clear();
+        }
+
+        // Add point to the in-progress polyline
+        polylinePoints.append(startPoint);
+        update(); // Redraw the area to show the new point
     }
 }
 
@@ -91,6 +118,15 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
         } else {
             qDebug() << "Polygon requires at least three vertices!";
         }
+    } else if (currentShapeType == "Polyline" && event->button() == Qt::RightButton) {
+        // Complete the polyline when right-click is detected
+        if (polylinePoints.size() > 1) {
+            shape = new Polyline(0, polylinePoints, QPoint(0, 0));
+            isDrawingPolyline = false; // Reset polyline drawing state
+            polylinePoints.clear(); // Clear points for the next polyline
+        } else {
+            qDebug() << "Polyline requires at least two points!";
+        }
     }
 
     if (shape != nullptr) {
@@ -101,3 +137,4 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
 
     qDebug() << "After mouseReleaseEvent called - Shape type: " << currentShapeType;
 }
+

@@ -7,15 +7,10 @@
 #include "ellipse.h"
 #include "line.h"
 #include "polygon.h"
+#include "polyline.h"  // Include Polyline header
 #include <QWidget>
 #include <QMouseEvent>
 #include <QVector>
-
-/****************************************
- * DrawArea Class
- *
- * This class represents the area used for drawing shapes and rendering them
- * **************************************/
 
 class DrawArea : public QWidget {
     Q_OBJECT
@@ -33,13 +28,13 @@ signals:
     void shapeDrawn(Shape* shape);
 
 private:
-    QString currentShapeType;           // Current shape type selected
-    QPoint startPoint;                  // Starting point for shapes
-    ShapeVector shapes;                 // Use ShapeVector to store shapes
-
-    // Variables for Polygon Drawing
-    bool isDrawingPolygon = false;      // Tracks whether a polygon is being drawn
-    QVector<QPoint> polygonVertices;    // Stores vertices of the polygon
+    QString currentShapeType;
+    QPoint startPoint;
+    ShapeVector shapes;  // Use ShapeVector to store shapes
+    QVector<QPoint> polygonVertices;  // Store vertices for Polygon
+    QVector<QPoint> polylinePoints;   // Store points for Polyline
+    bool isDrawingPolygon;  // Flag to track polygon drawing
+    bool isDrawingPolyline;  // Flag to track polyline drawing
 };
 
 #endif // DRAWAREA_H

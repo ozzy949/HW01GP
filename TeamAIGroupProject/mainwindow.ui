@@ -53,6 +53,11 @@
       <string>Polygon</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Polyline</string>
+     </property>
+    </item>
    </widget>
    <widget class="DrawArea" name="drawAreaWidget" native="true">
     <property name="geometry">
