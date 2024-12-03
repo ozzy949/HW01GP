@@ -39,7 +39,7 @@
      </property>
     </item>
    </widget>
-   <widget class="DrawArea" name="drawArea" native="true">
+   <widget class="DrawArea" name="drawAreaWidget" native="true">
     <property name="geometry">
      <rect>
       <x>9</x>

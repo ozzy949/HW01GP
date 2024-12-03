@@ -25,7 +25,6 @@ private slots:
 private:
     Ui::MainWindow* ui;
     ShapeVector shapeVector;  // Store all the shapes
-    DrawArea* drawArea;  // The widget where shapes are drawn
 };
 
 #endif // MAINWINDOW_H

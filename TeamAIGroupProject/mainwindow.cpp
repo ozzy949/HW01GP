@@ -3,7 +3,6 @@
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
-    drawArea(new DrawArea(this)),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -12,12 +11,14 @@ MainWindow::MainWindow(QWidget* parent) :
     connect(ui->ShapeComboBox, &QComboBox::currentTextChanged, this, &MainWindow::onShapeChanged);
 
     // Connect the signal for drawing a shape to store it in ShapeVector
-    connect(drawArea, &DrawArea::shapeDrawn, this, &MainWindow::onShapeDrawn);
+    connect(ui->drawAreaWidget, &DrawArea::shapeDrawn, this, &MainWindow::onShapeDrawn);
+
+    qDebug() << "MainWindow constructor called";
 }
 
 void MainWindow::onShapeChanged(const QString& shape) {
     // Pass the selected shape type to the DrawArea
-    drawArea->setShapeType(shape);
+    ui->drawAreaWidget->setShapeType(shape);
 }
 
 void MainWindow::onShapeDrawn(Shape* shape) {
