@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget* parent) :
     connect(ui->drawAreaWidget, &DrawArea::shapeDrawn, this, &MainWindow::onShapeDrawn);
 
     // Load the shapes from file when the program starts
-    ui->drawAreaWidget->loadShapes("shapes.txt");
+    //ui->drawAreaWidget->loadShapes("shapes.txt");
 }
 
 void MainWindow::onShapeChanged(const QString& shape) {
