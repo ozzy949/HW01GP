@@ -1,0 +1,19 @@
+@startuml ShapeVector
+skinparam classAttributeIconSize 0
+
+class ShapeVector {
+    - shapes: shapeVec
+    + ShapeVector()
+    + ~ShapeVector()
+    + addShape(Shape* shape): void
+    + removeShape(int id): void
+    + getShape(int id) const: Shape*
+    + size() const: int
+    + getShapeAt(int index) const: Shape*
+    + clear(): void
+    + getShapes() const: const shapeVec&
+}
+
+ShapeVector --o Shape
+ShapeVector --> Vector
+@enduml

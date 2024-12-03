@@ -1,0 +1,16 @@
+@startuml Parser
+skinparam classAttributeIconSize 0
+
+class Parser {
+  +saveToFile(shapes: std::vector<Shape*>, filename: std::string): void
+  +loadFromFile(shapes: std::vector<Shape*>, filename: std::string): void
+}
+
+Parser --|> Shape
+Parser --> Circle
+Parser --> Rectangle
+Parser --> Polygon
+Parser --> Line
+Parser --> Ellipse 
+Parser --> Text
+@enduml

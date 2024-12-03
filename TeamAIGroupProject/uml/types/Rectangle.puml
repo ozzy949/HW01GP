@@ -1,0 +1,17 @@
+@startuml Rectangle
+skinparam classAttributeIconSize 0
+
+class Rectangle {
+  - size: QSize
+  + Rectangle(int id, QPoint topLeft, QSize size)
+  + draw(QPainter& painter): void
+  + move(QPoint newPosition): void
+  + perimeter(): double
+  + area(): double
+  + getRect(): QRect
+  + toString(): std::string
+  + static fromString(std::string str): Rectangle*
+}
+
+Rectangle --|> Shape
+@enduml

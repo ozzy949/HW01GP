@@ -1,0 +1,12 @@
+@startuml LoginWindow
+skinparam classAttributeIconSize 0
+
+class LoginWindow {
+  - ui: Ui::LoginWindow*
+  + LoginWindow(parent: QWidget*)
+  + ~LoginWindow()
+  + on_pushButton_clicked(): void
+}
+LoginWindow --|> QMainWindow : inherits
+LoginWindow ..> MainWindow : creates
+@enduml

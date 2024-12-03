@@ -1,0 +1,16 @@
+@startuml MainWindow
+skinparam classAttributeIconSize 0
+
+class MainWindow {
+  - ui: Ui::MainWindow*
+  - shapeVector: ShapeVector
+  - drawArea: DrawArea*
+  + MainWindow(parent: QWidget*)
+  + ~MainWindow()
+  + onShapeChanged(shape: QString): void
+  + onShapeDrawn(shape: Shape*): void
+}
+MainWindow --|> QMainWindow : inherits
+MainWindow ..> ShapeVector : contains
+MainWindow ..> DrawArea : uses
+@enduml

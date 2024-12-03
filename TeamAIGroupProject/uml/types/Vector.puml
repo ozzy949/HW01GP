@@ -1,0 +1,27 @@
+@startuml Vector
+skinparam classAttributeIconSize 0
+
+class Vector {
+    - size_v: int
+    - elem: T*
+    - space: int
+    + vector()
+    + vector(int s)
+    + vector(const vector& src)
+    + operator=(const vector& src): vector&
+    + ~vector()
+    + operator[](int n): T&
+    + operator[](int n): const T&
+    + size(): int
+    + capacity(): int
+    + resize(int newsize): void
+    + push_back(const T& d): void
+    + reserve(int newalloc): void
+    + begin(): iterator
+    + begin() const: const_iterator
+    + end(): iterator
+    + end() const: const_iterator
+    + insert(iterator p, const T& val): iterator
+    + erase(iterator p): iterator
+}
+@enduml

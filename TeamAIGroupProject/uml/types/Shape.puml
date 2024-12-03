@@ -1,0 +1,33 @@
+@startuml Shape
+skinparam classAttributeIconSize 0
+
+abstract class Shape {
+  - id: int
+  - position: QPoint
+  - pen: QPen
+  - brush: QBrush
+  + Shape(id: int, position: QPoint)
+  + virtual ~Shape()
+  + getId(): int
+  + getPosition(): QPoint
+  + getPen(): QPen
+  + getBrush(): QBrush
+  + setPosition(position: QPoint): void
+  + setPen(pen: QPen): void
+  + setBrush(brush: QBrush): void
+  + virtual draw(painter: QPainter): void
+  + virtual move(newPosition: QPoint): void
+  + virtual perimeter(): double
+  + virtual area(): double
+  + virtual toString(): std::string
+  + virtual getRect(): QRect
+  - penStyleToString(style: Qt::PenStyle): std::string
+  - penCapStyleToString(capStyle: Qt::PenCapStyle): std::string
+  - penJoinStyleToString(joinStyle: Qt::PenJoinStyle): std::string
+  - brushStyleToString(brushStyle: Qt::BrushStyle): std::string
+  - static stringToPenStyle(style: std::string): Qt::PenStyle
+  - static stringToPenCapStyle(style: std::string): Qt::PenCapStyle
+  - static stringToPenJoinStyle(style: std::string): Qt::PenJoinStyle
+  - static stringToBrushStyle(styleStr: std::string): Qt::BrushStyle
+}
+@enduml

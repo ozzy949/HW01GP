@@ -1,0 +1,17 @@
+@startuml Polygon
+skinparam classAttributeIconSize 0
+
+class Polygon {
+  - points: QVector<QPoint>
+  + Polygon(int id, QVector<QPoint> points)
+  + draw(QPainter& painter): void
+  + move(QPoint newPosition): void
+  + perimeter(): double
+  + area(): double
+  + getRect(): QRect
+  + toString(): std::string
+  + static fromString(std::string str): Polygon*
+}
+
+Polygon --|> Shape
+@enduml

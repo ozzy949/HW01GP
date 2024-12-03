@@ -1,0 +1,17 @@
+@startuml DrawArea
+skinparam classAttributeIconSize 0
+
+class DrawArea {
+  - currentShapeType: QString
+  - startPoint: QPoint
+  - shapes: ShapeVector
+  + DrawArea(parent: QWidget*)
+  + setShapeType(shapeType: QString): void
+  + paintEvent(event: QPaintEvent*): void
+  + mousePressEvent(event: QMouseEvent*): void
+  + mouseReleaseEvent(event: QMouseEvent*): void
+  + shapeDrawn(Shape*): void
+}
+DrawArea --* ShapeVector
+DrawArea --* Shape
+@enduml

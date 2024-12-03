@@ -1,0 +1,18 @@
+@startuml Ellipse
+skinparam classAttributeIconSize 0
+
+class Ellipse {
+  - center: QPoint
+  - radii: QSize
+  + Ellipse(int id, QPoint center, QSize radii)
+  + draw(QPainter& painter): void
+  + move(QPoint newPosition): void
+  + perimeter(): double
+  + area(): double
+  + getRect(): QRect
+  + toString(): std::string
+  + static fromString(std::string str): Ellipse*
+}
+
+Ellipse --|> Shape
+@enduml

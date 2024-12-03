@@ -1,0 +1,16 @@
+@startuml Text
+skinparam classAttributeIconSize 0
+
+class Text {
+  - position: QPoint
+  - content: QString
+  + Text(int id, QPoint position, QString content)
+  + draw(QPainter& painter): void
+  + move(QPoint newPosition): void
+  + getRect(): QRect
+  + toString(): std::string
+  + static fromString(std::string str): Text*
+}
+
+Text --|> Shape
+@enduml

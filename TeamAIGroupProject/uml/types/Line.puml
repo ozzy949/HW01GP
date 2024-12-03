@@ -1,0 +1,20 @@
+@startuml Line
+skinparam classAttributeIconSize 0
+
+class Line {
+  - startPoint: QPoint
+  - endPoint: QPoint
+  + Line(int id, QPoint startPoint, QPoint endPoint)
+  + setStartPoint(QPoint point): void
+  + setEndPoint(QPoint point): void
+  + draw(QPainter& painter): void
+  + move(QPoint newPosition): void
+  + perimeter(): double
+  + area(): double
+  + getRect(): QRect
+  + toString(): std::string
+  + static fromString(std::string str): Line*
+}
+
+Line --|> Shape
+@enduml
