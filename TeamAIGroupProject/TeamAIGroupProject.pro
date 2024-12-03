@@ -20,7 +20,9 @@ SOURCES += \
     mainwindow.cpp \
     rectangle.cpp \
     shape.cpp \
-    shapevector.cpp
+    shapevector.cpp \
+    polyline.cpp \
+    contactus.cpp
 
 HEADERS += \
     Ellipse.h \
@@ -35,7 +37,9 @@ HEADERS += \
     rectangle.h \
     shape.h \
     shapevector.h \
-    vector.h
+    vector.h \
+    polyline.h \
+    contactus.h
 
 FORMS += \
     loginwindow.ui \
