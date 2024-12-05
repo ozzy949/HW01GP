@@ -3,7 +3,8 @@
     #include <QPoint>
 
     // Constructor implementation
-    Circle::Circle(int id, const QPoint& center, int radius) : Shape(id, center), radius(radius) {}
+    Circle::Circle(int id, const QPoint& center, int radius)
+        : Shape(id, center), radius(radius) {}
 
     // Draw function: Draws the circle on the painter
     void Circle::draw(QPainter& painter) const {

@@ -22,7 +22,8 @@ SOURCES += \
     shape.cpp \
     shapevector.cpp \
     polyline.cpp \
-    contactus.cpp
+    contactus.cpp \
+    square.cpp
 
 HEADERS += \
     Ellipse.h \
@@ -37,6 +38,7 @@ HEADERS += \
     rectangle.h \
     shape.h \
     shapevector.h \
+    square.h \
     vector.h \
     polyline.h \
     contactus.h

@@ -47,6 +47,7 @@ public:
         ShapeComboBox->addItem(QString());
         ShapeComboBox->addItem(QString());
         ShapeComboBox->addItem(QString());
+        ShapeComboBox->addItem(QString());
         ShapeComboBox->setObjectName("ShapeComboBox");
         ShapeComboBox->setGeometry(QRect(9, 9, 107, 32));
         QFont font;
@@ -89,8 +90,9 @@ public:
         ShapeComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Polyline", nullptr));
         ShapeComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Polygon", nullptr));
         ShapeComboBox->setItemText(3, QCoreApplication::translate("MainWindow", "Rectangle", nullptr));
-        ShapeComboBox->setItemText(4, QCoreApplication::translate("MainWindow", "Ellipse", nullptr));
-        ShapeComboBox->setItemText(5, QCoreApplication::translate("MainWindow", "Circle", nullptr));
+        ShapeComboBox->setItemText(4, QCoreApplication::translate("MainWindow", "Square", nullptr));
+        ShapeComboBox->setItemText(5, QCoreApplication::translate("MainWindow", "Ellipse", nullptr));
+        ShapeComboBox->setItemText(6, QCoreApplication::translate("MainWindow", "Circle", nullptr));
 
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));

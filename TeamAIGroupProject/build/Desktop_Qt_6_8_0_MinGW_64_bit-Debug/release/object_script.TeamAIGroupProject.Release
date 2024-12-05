@@ -12,6 +12,7 @@ release/shape.o
 release/shapevector.o
 release/polyline.o
 release/contactus.o
+release/square.o
 release/moc_drawarea.o
 release/moc_loginwindow.o
 release/moc_mainwindow.o

@@ -1,13 +1,14 @@
 #ifndef PARSER_H_
 #define PARSER_H_
 
+#include "Line.h"
+#include "Polyline.h"
 #include "Polygon.h"
 #include "Rectangle.h"
-#include "Circle.h"
-#include "Line.h"
+#include "Square.h"
 #include "Ellipse.h"
+#include "Circle.h"
 #include "Text.h"
-#include "Polyline.h"
 #include "shapevector.h"
 
 #include <fstream>
@@ -97,6 +98,8 @@ private:
             return Polygon::fromString(data);
         } else if (type == "Rectangle") {
             return Rectangle::fromString(data);
+        } else if (type == "Square") {
+            return Square::fromString(data);
         } else if (type == "Ellipse") {
             return Ellipse::fromString(data);
         } else if (type == "Circle") {
@@ -131,9 +134,16 @@ public:
         std::string line;
         while (std::getline(file, line)) {
             if (line.find("ShapeId:") == 0) {
+                // Handle the first line (ShapeId) explicitly
+                std::string shapeIdLine = line;
+
                 // Extract full shape data
                 std::string shapeData = compactShapeData(file);
-                Shape* shape = createShapeFromData(line + "\n" + shapeData);
+                // Combine ShapeId with the rest of the shape data
+                std::string fullShapeData = shapeIdLine + "\n" + shapeData;
+
+                qDebug() << "Full shape data extracted: " << fullShapeData;
+                Shape* shape = createShapeFromData(fullShapeData);
 
                 if (shape) {
                     shapes.addShape(shape);

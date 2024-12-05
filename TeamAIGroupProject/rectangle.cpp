@@ -1,8 +1,8 @@
 #include "rectangle.h"
 
 // Constructor for the Rectangle class
-Rectangle::Rectangle(const QRect& rect)
-    : Shape(0, rect.topLeft()), rect(rect) {
+Rectangle::Rectangle(int id, const QRect& rect)
+    : Shape(id, rect.topLeft()), rect(rect) {
     // Initialize the shape with its ID and position from the rectangle's top-left corner
 }
 
@@ -86,7 +86,7 @@ Rectangle* Rectangle::fromString(const std::string& str) {
 
 
     // Create and return the Rectangle object
-    Rectangle* t_rect = new Rectangle(QRect(x1, y1, width, height));
+    Rectangle* t_rect = new Rectangle(id, QRect(x1, y1, width, height));
     t_rect->setPen(t_pen);
     t_rect->setBrush(t_brush);
 

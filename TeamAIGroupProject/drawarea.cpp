@@ -93,11 +93,11 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
     Shape* shape = nullptr;
 
     if (currentShapeType == "Line") {
-        shape = new Line(0, startPoint, endPoint, QPoint(0, 0));
+        shape = new Line(1, startPoint, endPoint, QPoint(0, 0));
     } else if (currentShapeType == "Polyline" && event->button() == Qt::RightButton) {
         // Complete the polyline when right-click is detected
         if (polylinePoints.size() > 1) {
-            shape = new Polyline(0, polylinePoints, QPoint(0, 0));
+            shape = new Polyline(2, polylinePoints, QPoint(0, 0));
             isDrawingPolyline = false; // Reset polyline drawing state
             polylinePoints.clear(); // Clear points for the next polyline
         } else {
@@ -106,7 +106,7 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
     } else if (currentShapeType == "Polygon" && event->button() == Qt::RightButton) {
         // Complete the polygon when right-click is detected
         if (polygonVertices.size() > 2) {
-            shape = new Polygon(0, polygonVertices, QPoint(0, 0));
+            shape = new Polygon(3, polygonVertices, QPoint(0, 0));
             isDrawingPolygon = false; // Reset polygon drawing state
             polygonVertices.clear(); // Clear vertices for the next polygon
         } else {
@@ -114,13 +114,16 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
         }
     } else if (currentShapeType == "Rectangle") {
         QRect rect(startPoint, endPoint);
-        shape = new Rectangle(rect);
+        shape = new Rectangle(4, rect);
+    } else if (currentShapeType == "Square") {
+        int sideLength = std::abs(startPoint.x() - endPoint.x());
+        shape = new Square(5, startPoint, sideLength);
     } else if (currentShapeType == "Ellipse") {
         QSize radii = QSize(std::abs(startPoint.x() - endPoint.x()), std::abs(startPoint.y() - endPoint.y()));
-        shape = new Ellipse(0, startPoint, radii);
+        shape = new Ellipse(6, startPoint, radii);
     } else if (currentShapeType == "Circle") {
         int radius = (startPoint - endPoint).manhattanLength();
-        shape = new Circle(0, startPoint, radius);
+        shape = new Circle(7, startPoint, radius);
     }
 
     if (shape != nullptr) {

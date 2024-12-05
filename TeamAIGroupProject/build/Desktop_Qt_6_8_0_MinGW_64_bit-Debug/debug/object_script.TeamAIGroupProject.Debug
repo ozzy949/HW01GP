@@ -12,6 +12,7 @@ debug/shape.o
 debug/shapevector.o
 debug/polyline.o
 debug/contactus.o
+debug/square.o
 debug/moc_drawarea.o
 debug/moc_loginwindow.o
 debug/moc_mainwindow.o

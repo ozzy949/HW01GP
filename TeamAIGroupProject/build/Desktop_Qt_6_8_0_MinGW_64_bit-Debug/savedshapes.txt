@@ -1,33 +1,6 @@
 ShapeId: 0
-ShapeType: Line
-ShapeDimensions: 395 205 461 267
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-
-ShapeId: 0
-ShapeType: Line
-ShapeDimensions: 474 158 410 279
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-
-ShapeId: 0
-ShapeType: Polyline
-ShapeDimensions: 177 116 193 214 319 195 334 115 252 70 
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-
-ShapeId: 0
-ShapeType: Polygon
-ShapeDimensions: 102 169 103 292 228 304 256 192 187 125 
+ShapeType: Square
+ShapeDimensions: 138 147 136
 PenColor: #000000
 PenWidth: 1
 PenStyle: SolidLine
@@ -37,8 +10,8 @@ BrushColor: #000000
 BrushStyle: Unknown
 
 ShapeId: 0
-ShapeType: Rectangle
-ShapeDimensions: 280 128 61 178
+ShapeType: Square
+ShapeDimensions: 321 167 135
 PenColor: #000000
 PenWidth: 1
 PenStyle: SolidLine
@@ -48,8 +21,8 @@ BrushColor: #000000
 BrushStyle: Unknown
 
 ShapeId: 0
-ShapeType: Ellipse
-ShapeDimensions: 385 301 152 73
+ShapeType: Square
+ShapeDimensions: 410 118 162
 PenColor: #000000
 PenWidth: 1
 PenStyle: SolidLine
@@ -59,8 +32,52 @@ BrushColor: #000000
 BrushStyle: Unknown
 
 ShapeId: 0
-ShapeType: Circle
-ShapeDimensions: 536 112 132
+ShapeType: Square
+ShapeDimensions: 445 89 17
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+
+ShapeId: 0
+ShapeType: Square
+ShapeDimensions: 376 109 23
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+
+ShapeId: 0
+ShapeType: Square
+ShapeDimensions: 300 112 44
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+
+ShapeId: 0
+ShapeType: Square
+ShapeDimensions: 198 108 59
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+
+ShapeId: 0
+ShapeType: Square
+ShapeDimensions: 380 188 55
 PenColor: #000000
 PenWidth: 1
 PenStyle: SolidLine

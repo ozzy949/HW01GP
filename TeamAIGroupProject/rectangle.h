@@ -6,7 +6,7 @@
 class Rectangle : public Shape {
 public:
     // Constructor that takes an initial position and size (QRect)
-    Rectangle(const QRect& rect);
+    Rectangle(int id, const QRect& rect);
 
     // Override the pure virtual methods from Shape
     void draw(QPainter& painter) const override;

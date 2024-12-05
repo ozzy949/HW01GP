@@ -114,6 +114,7 @@ std::string Shape::brushStyleToString(Qt::BrushStyle brushStyle) const {
     case Qt::RadialGradientPattern: return "RadialGradientPattern";
     case Qt::ConicalGradientPattern: return "ConicalGradientPattern";
     case Qt::TexturePattern: return "TexturePattern";
+    case Qt::NoBrush: return "NoBrush";
     default: return "Unknown";
     }
 }
@@ -137,5 +138,6 @@ Qt::BrushStyle Shape::stringToBrushStyle(const std::string& style) {
     if (style == "RadialGradientPattern") return Qt::RadialGradientPattern;
     if (style == "ConicalGradientPattern") return Qt::ConicalGradientPattern;
     if (style == "TexturePattern") return Qt::TexturePattern;
+    if (style == "NoBrush") return Qt::NoBrush;
     return Qt::NoBrush;
 }

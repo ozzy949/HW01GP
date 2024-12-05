@@ -8,6 +8,7 @@
 #include <QString>
 #include <QPoint>
 #include <QRect>
+#include <QDebug>
 
 // Abstract Base Class for Shape
 class Shape
