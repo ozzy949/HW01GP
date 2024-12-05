@@ -7,11 +7,9 @@
 
 DrawArea::DrawArea(QWidget* parent)
     : QWidget(parent), currentShapeType("Circle"), isDrawingPolygon(false), isDrawingPolyline(false) {
-    qDebug() << "DrawArea constructor called";
 }
 
 void DrawArea::setShapeType(const QString& shapeType) {
-    qDebug() << "Initial setShapeType called - Shape type: " << currentShapeType;
     currentShapeType = shapeType;
 
     // Reset polygon and polyline drawing if the shape type changes
@@ -21,8 +19,6 @@ void DrawArea::setShapeType(const QString& shapeType) {
         polygonVertices.clear();
         polylinePoints.clear();
     }
-
-    qDebug() << "After setShapeType called - Shape type: " << currentShapeType;
 }
 
 void DrawArea::paintEvent(QPaintEvent* /*event*/) {
@@ -63,7 +59,6 @@ void DrawArea::paintEvent(QPaintEvent* /*event*/) {
 }
 
 void DrawArea::mousePressEvent(QMouseEvent* event) {
-    qDebug() << "Initial mousePressEvent called - Shape type: " << currentShapeType;
 
     startPoint = event->pos();
 
@@ -92,7 +87,6 @@ void DrawArea::mousePressEvent(QMouseEvent* event) {
 }
 
 void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
-    qDebug() << "Initial mouseReleaseEvent called - Shape type: " << currentShapeType;
 
     QPoint endPoint = event->pos();
 
@@ -130,10 +124,15 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
     }
 
     if (shape != nullptr) {
+        qDebug() << "Adding Shape";
         shapes.addShape(shape);
+        parser.saveToFile(shapes, "shapes.txt");
         emit shapeDrawn(shape);
         update();
     }
+}
 
-    qDebug() << "After mouseReleaseEvent called - Shape type: " << currentShapeType;
+void DrawArea::loadShapes(const QString& filename) {
+    parser.loadFromFile(shapes, filename.toStdString());  // Pass ShapeVector to load
+    update();
 }

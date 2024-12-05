@@ -88,7 +88,7 @@ Polyline* Polyline::fromString(const std::string& str) {
     std::istringstream iss(str);
     std::string label, type;
     int id;
-    QVector<QPoint> points;
+    QVector<QPoint> vertices;
     std::string penColor;
     int penWidth;
     std::string penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle;
@@ -97,13 +97,12 @@ Polyline* Polyline::fromString(const std::string& str) {
     iss >> label >> id;
     iss >> label >> type;
     while (iss >> label) {
-        int x, y;
         if (label == "PenColor:") break;
-
+        int x, y;
         iss >> x >> y;
-        points.append(QPoint(x, y));
+        vertices.append(QPoint(x, y));
     }
-    iss >> label >> penColor;
+    iss >> penColor;
     iss >> label >> penWidth;
     iss >> label >> penStyle;
     iss >> label >> penCapStyle;
@@ -124,10 +123,13 @@ Polyline* Polyline::fromString(const std::string& str) {
     t_brush.setColor(QString::fromStdString(brushColor));
     t_brush.setStyle(Shape::stringToBrushStyle(brushStyle));
 
-    // Create and return the Polyline object
-    Polyline* t_Polyline = new Polyline(id, points, points.isEmpty() ? QPoint(0, 0) : points[0]);
-    t_Polyline->setPen(t_pen);
-    t_Polyline->setBrush(t_brush);
+    QPoint position = vertices.empty() ? QPoint(0, 0) : vertices[0];
 
-    return t_Polyline;
+    // Create and return the Polyline object
+    Polyline* t_polyline = new Polyline(id, vertices, position);
+    t_polyline->setPen(t_pen);
+    t_polyline->setBrush(t_brush);
+
+    return t_polyline;
 }
+

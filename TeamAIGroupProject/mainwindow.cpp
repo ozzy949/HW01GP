@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <qDir>
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
@@ -13,8 +14,9 @@ MainWindow::MainWindow(QWidget* parent) :
     // Connect the signal for drawing a shape to store it in ShapeVector
     connect(ui->drawAreaWidget, &DrawArea::shapeDrawn, this, &MainWindow::onShapeDrawn);
 
-    // Load the shapes from file when the program starts
-    //ui->drawAreaWidget->loadShapes("shapes.txt");
+    ui->drawAreaWidget->loadShapes("shapes.txt");
+    qDebug() << QDir::currentPath();
+
 }
 
 void MainWindow::onShapeChanged(const QString& shape) {
