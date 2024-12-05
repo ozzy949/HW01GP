@@ -92,38 +92,66 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
 
     Shape* shape = nullptr;
 
+    Shape* shapeFromList;
+
     if (currentShapeType == "Line") {
+        // Make shapeFromList into a shape with the data of the shape with id 1 (line) from shapeList
+        shapeFromList = shapeList.getShape(1);
         shape = new Line(1, startPoint, endPoint, QPoint(0, 0));
+        shape->setPen(shapeFromList->getPen());
     } else if (currentShapeType == "Polyline" && event->button() == Qt::RightButton) {
+        // Make shapeFromList into a shape with the data of the shape with id 2 (polyline) from shapeList
+        shapeFromList = shapeList.getShape(2);
         // Complete the polyline when right-click is detected
         if (polylinePoints.size() > 1) {
             shape = new Polyline(2, polylinePoints, QPoint(0, 0));
+            shape->setPen(shapeFromList->getPen());
             isDrawingPolyline = false; // Reset polyline drawing state
             polylinePoints.clear(); // Clear points for the next polyline
         } else {
             qDebug() << "Polyline requires at least two points!";
         }
     } else if (currentShapeType == "Polygon" && event->button() == Qt::RightButton) {
+        // Make shapeFromList into a shape with the data of the shape with id 3 (polygon) from shapeList
+        shapeFromList = shapeList.getShape(3);
         // Complete the polygon when right-click is detected
         if (polygonVertices.size() > 2) {
             shape = new Polygon(3, polygonVertices, QPoint(0, 0));
+            shape->setPen(shapeFromList->getPen());
+            shape->setBrush(shapeFromList->getBrush());
             isDrawingPolygon = false; // Reset polygon drawing state
             polygonVertices.clear(); // Clear vertices for the next polygon
         } else {
             qDebug() << "Polygon requires at least three vertices!";
         }
     } else if (currentShapeType == "Rectangle") {
+        // Make shapeFromList into a shape with the data of the shape with id 4 (rectangle) from shapeList
+        shapeFromList = shapeList.getShape(4);
         QRect rect(startPoint, endPoint);
         shape = new Rectangle(4, rect);
+        shape->setPen(shapeFromList->getPen());
+        shape->setBrush(shapeFromList->getBrush());
     } else if (currentShapeType == "Square") {
+        // Make shapeFromList into a shape with the data of the shape with id 5 (square) from shapeList
+        shapeFromList = shapeList.getShape(5);
         int sideLength = std::abs(startPoint.x() - endPoint.x());
         shape = new Square(5, startPoint, sideLength);
+        shape->setPen(shapeFromList->getPen());
+        shape->setBrush(shapeFromList->getBrush());
     } else if (currentShapeType == "Ellipse") {
+        // Make shapeFromList into a shape with the data of the shape with id 6 (ellipse) from shapeList
+        shapeFromList = shapeList.getShape(6);
         QSize radii = QSize(std::abs(startPoint.x() - endPoint.x()), std::abs(startPoint.y() - endPoint.y()));
         shape = new Ellipse(6, startPoint, radii);
+        shape->setPen(shapeFromList->getPen());
+        shape->setBrush(shapeFromList->getBrush());
     } else if (currentShapeType == "Circle") {
+        // Make shapeFromList into a shape with the data of the shape with id 7 (circle) from shapeList
+        shapeFromList = shapeList.getShape(7);
         int radius = (startPoint - endPoint).manhattanLength();
         shape = new Circle(7, startPoint, radius);
+        shape->setPen(shapeFromList->getPen());
+        shape->setBrush(shapeFromList->getBrush());
     }
 
     if (shape != nullptr) {

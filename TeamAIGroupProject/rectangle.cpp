@@ -8,6 +8,8 @@ Rectangle::Rectangle(int id, const QRect& rect)
 
 // Draw the rectangle
 void Rectangle::draw(QPainter& painter) const {
+    painter.setPen(getPen());
+    painter.setBrush(getBrush());
     painter.drawRect(rect);  // Draw the rectangle using the QRect's data
 }
 

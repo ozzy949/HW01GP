@@ -8,6 +8,8 @@ Square::Square(int id, const QPoint& topLeft, int sideLength)
 
 // Draw the square
 void Square::draw(QPainter& painter) const {
+    painter.setPen(getPen());
+    painter.setBrush(getBrush());
     painter.drawRect(QRect(topLeft, QSize(sideLength, sideLength)));  // Draw the square using the top-left position and side length
 }
 

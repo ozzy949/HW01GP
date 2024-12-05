@@ -30,7 +30,6 @@ private:
             if (line.find("ShapeType:") != std::string::npos) {
                 // If the line contains "ShapeType:", store it in shapeTypeLine
                 shapeTypeLine = line;
-                qDebug() << "Shape type found in compactShapeData: " << shapeTypeLine;
                 compacted << shapeTypeLine << "\n"; // Add the ShapeType line to compacted data
             }
             // If the line contains "ShapeDimensions:", handle its values properly
@@ -87,8 +86,6 @@ private:
                        return !std::isspace(ch);
                    }));
 
-        qDebug() << "Shape type found in createShapeFromData: " << type;
-
         // Create shape based on the type
         if (type == "Line") {
             return Line::fromString(data);
@@ -142,7 +139,6 @@ public:
                 // Combine ShapeId with the rest of the shape data
                 std::string fullShapeData = shapeIdLine + "\n" + shapeData;
 
-                qDebug() << "Full shape data extracted: " << fullShapeData;
                 Shape* shape = createShapeFromData(fullShapeData);
 
                 if (shape) {

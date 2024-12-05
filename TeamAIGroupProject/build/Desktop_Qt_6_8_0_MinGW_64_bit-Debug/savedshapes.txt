@@ -1,88 +1,20 @@
-ShapeId: 0
-ShapeType: Square
-ShapeDimensions: 138 147 136
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
+ShapeId: 1
+ShapeType: Line
+ShapeDimensions: 208 71 223 99
+PenColor: #0000ff
+PenWidth: 2
+PenStyle: DashDotLine
+PenCapStyle: FlatCap
+PenJoinStyle: MiterJoin
 
-ShapeId: 0
+ShapeId: 5
 ShapeType: Square
-ShapeDimensions: 321 167 135
-PenColor: #000000
-PenWidth: 1
+ShapeDimensions: 119 143 157
+PenColor: #ff0000
+PenWidth: 0
 PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
-
-ShapeId: 0
-ShapeType: Square
-ShapeDimensions: 410 118 162
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
-
-ShapeId: 0
-ShapeType: Square
-ShapeDimensions: 445 89 17
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
-
-ShapeId: 0
-ShapeType: Square
-ShapeDimensions: 376 109 23
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
-
-ShapeId: 0
-ShapeType: Square
-ShapeDimensions: 300 112 44
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
-
-ShapeId: 0
-ShapeType: Square
-ShapeDimensions: 198 108 59
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
-
-ShapeId: 0
-ShapeType: Square
-ShapeDimensions: 380 188 55
-PenColor: #000000
-PenWidth: 1
-PenStyle: SolidLine
-PenCapStyle: SquareCap
-PenJoinStyle: BevelJoin
-BrushColor: #000000
-BrushStyle: Unknown
+PenCapStyle: RoundCap
+PenJoinStyle: RoundJoin
+BrushColor: #0000ff
+BrushStyle: HorPattern
 
