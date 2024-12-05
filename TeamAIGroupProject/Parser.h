@@ -7,12 +7,13 @@
 #include "Line.h"
 #include "Ellipse.h"
 #include "Text.h"
+#include "Polyline.h"
 #include "shapevector.h"
 
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <qDebug>
+#include <QDebug>
 
 class Parser {
 private:
@@ -20,15 +21,55 @@ private:
     std::string compactShapeData(std::ifstream& file) {
         std::ostringstream compacted;
         std::string line;
+        std::string shapeTypeLine;
 
         while (std::getline(file, line)) {
-            compacted << line << "\n"; // Add line to compacted data
-            // Stop at the last known property of a shape
-            if (line.find("BrushStyle:") != std::string::npos ||
-                (line.find("PenJoinStyle:") != std::string::npos && line.find("BrushStyle:") == std::string::npos)) {
-                break;
+
+            // If the line contains "ShapeType:", stores a separate string of this line
+            if (line.find("ShapeType:") != std::string::npos) {
+                // If the line contains "ShapeType:", store it in shapeTypeLine
+                shapeTypeLine = line;
+                qDebug() << "Shape type found in compactShapeData: " << shapeTypeLine;
+                compacted << shapeTypeLine << "\n"; // Add the ShapeType line to compacted data
             }
-        }
+            // If the line contains "ShapeDimensions:", handle its values properly
+            else if (line.find("ShapeDimensions:") != std::string::npos) {
+                // Parse the ShapeDimensions (e.g., "20, 90, 100, 20")
+                std::string dimensions = line.substr(line.find(":") + 1);  // Get the part after "ShapeDimensions:"
+                std::replace(dimensions.begin(), dimensions.end(), ',', ' '); // Replace commas with spaces
+                compacted << "ShapeDimensions: " << dimensions << "\n";  // Add it to the compacted data
+            }
+            else {
+                compacted << line << "\n"; // Add line to compacted data
+            }
+
+            // Based on the ShapeType line, stop at the last known property of a shape
+                if (shapeTypeLine == "ShapeType: Line") { // Line
+                    if (line.find("PenJoinStyle:") != std::string::npos)
+                    break;
+                } else if (shapeTypeLine == "ShapeType: Polyline") { // Polyline
+                    if (line.find("PenJoinStyle:") != std::string::npos)
+                    break;
+                } else if (shapeTypeLine == "ShapeType: Polygon") { // Polygon
+                    if (line.find("BrushStyle:") != std::string::npos)
+                        break;
+                } else if (shapeTypeLine == "ShapeType: Square") { // Square
+                    if (line.find("BrushStyle:") != std::string::npos)
+                        break;
+                } else if (shapeTypeLine == "ShapeType: Rectangle") { // Rectangle
+                    if (line.find("BrushStyle:") != std::string::npos)
+                        break;
+                } else if (shapeTypeLine == "ShapeType: Ellipse") { // Ellipse
+                    if (line.find("BrushStyle:") != std::string::npos)
+                        break;
+                } else if (shapeTypeLine == "ShapeType: Circle") { // Circle
+                    if (line.find("BrushStyle:") != std::string::npos)
+                        break;
+                } else if (shapeTypeLine == "ShapeType: Text") { // Text
+                    if (line.find("TextFontWeight:") != std::string::npos)
+                        break;
+                }
+            }
         return compacted.str();
     }
 
@@ -45,17 +86,21 @@ private:
                        return !std::isspace(ch);
                    }));
 
+        qDebug() << "Shape type found in createShapeFromData: " << type;
+
         // Create shape based on the type
-        if (type == "Circle") {
-            return Circle::fromString(data);
-        } else if (type == "Rectangle") {
-            return Rectangle::fromString(data);
+        if (type == "Line") {
+            return Line::fromString(data);
+        } else if (type == "Polyline") {
+            return Polyline::fromString(data);
         } else if (type == "Polygon") {
             return Polygon::fromString(data);
-        } else if (type == "Line") {
-            return Line::fromString(data);
+        } else if (type == "Rectangle") {
+            return Rectangle::fromString(data);
         } else if (type == "Ellipse") {
             return Ellipse::fromString(data);
+        } else if (type == "Circle") {
+            return Circle::fromString(data);
         } else if (type == "Text") {
             return Text::fromString(data);
         }

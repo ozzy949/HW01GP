@@ -29,6 +29,7 @@ public:
     QLineEdit *NameLineEdit;
     QPushButton *pushButton;
     QLabel *EmptyNameWarning;
+    QPushButton *contactUsButton;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *LoginWindow)
@@ -66,6 +67,9 @@ public:
         QFont font2;
         font2.setPointSize(10);
         EmptyNameWarning->setFont(font2);
+        contactUsButton = new QPushButton(centralwidget);
+        contactUsButton->setObjectName("contactUsButton");
+        contactUsButton->setGeometry(QRect(620, 490, 141, 41));
         LoginWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(LoginWindow);
         statusbar->setObjectName("statusbar");
@@ -83,6 +87,7 @@ public:
         NameLabel->setText(QCoreApplication::translate("LoginWindow", "Name", nullptr));
         pushButton->setText(QCoreApplication::translate("LoginWindow", "OK", nullptr));
         EmptyNameWarning->setText(QCoreApplication::translate("LoginWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">Please enter a name.</span></p></body></html>", nullptr));
+        contactUsButton->setText(QCoreApplication::translate("LoginWindow", "Need help? Contact us!", nullptr));
     } // retranslateUi
 
 };

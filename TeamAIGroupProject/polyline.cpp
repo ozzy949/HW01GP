@@ -76,8 +76,6 @@ std::string Polyline::toString() const {
         << "\nPenStyle: " << Shape::penStyleToString(pen.style())
         << "\nPenCapStyle: " << Shape::penCapStyleToString(pen.capStyle())
         << "\nPenJoinStyle: " << Shape::penJoinStyleToString(pen.joinStyle())
-        << "\nBrushColor: " << brush.color().name().toStdString()
-        << "\nBrushStyle: " << Shape::brushStyleToString(brush.style())
         << "\n";
 
     return oss.str();

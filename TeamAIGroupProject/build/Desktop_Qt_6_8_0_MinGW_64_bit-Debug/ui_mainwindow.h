@@ -12,11 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
+#include "drawarea.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -24,12 +25,13 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
+    QComboBox *ShapeComboBox;
+    DrawArea *drawAreaWidget;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuReports;
     QMenu *menuHelp;
-    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -38,6 +40,24 @@ public:
         MainWindow->resize(800, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
+        ShapeComboBox = new QComboBox(centralwidget);
+        ShapeComboBox->addItem(QString());
+        ShapeComboBox->addItem(QString());
+        ShapeComboBox->addItem(QString());
+        ShapeComboBox->addItem(QString());
+        ShapeComboBox->addItem(QString());
+        ShapeComboBox->addItem(QString());
+        ShapeComboBox->setObjectName("ShapeComboBox");
+        ShapeComboBox->setGeometry(QRect(9, 9, 107, 32));
+        QFont font;
+        font.setPointSize(14);
+        ShapeComboBox->setFont(font);
+        drawAreaWidget = new DrawArea(centralwidget);
+        drawAreaWidget->setObjectName("drawAreaWidget");
+        drawAreaWidget->setGeometry(QRect(9, 49, 781, 521));
+        drawAreaWidget->setMouseTracking(true);
+        drawAreaWidget->setTabletTracking(false);
+        drawAreaWidget->setAutoFillBackground(false);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -51,9 +71,6 @@ public:
         menuHelp = new QMenu(menubar);
         menuHelp->setObjectName("menuHelp");
         MainWindow->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName("statusbar");
-        MainWindow->setStatusBar(statusbar);
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuEdit->menuAction());
@@ -68,6 +85,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        ShapeComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Line", nullptr));
+        ShapeComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Polyline", nullptr));
+        ShapeComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Polygon", nullptr));
+        ShapeComboBox->setItemText(3, QCoreApplication::translate("MainWindow", "Rectangle", nullptr));
+        ShapeComboBox->setItemText(4, QCoreApplication::translate("MainWindow", "Ellipse", nullptr));
+        ShapeComboBox->setItemText(5, QCoreApplication::translate("MainWindow", "Circle", nullptr));
+
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuReports->setTitle(QCoreApplication::translate("MainWindow", "Reports", nullptr));

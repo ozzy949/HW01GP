@@ -1,0 +1,71 @@
+ShapeId: 0
+ShapeType: Line
+ShapeDimensions: 395 205 461 267
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+
+ShapeId: 0
+ShapeType: Line
+ShapeDimensions: 474 158 410 279
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+
+ShapeId: 0
+ShapeType: Polyline
+ShapeDimensions: 177 116 193 214 319 195 334 115 252 70 
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+
+ShapeId: 0
+ShapeType: Polygon
+ShapeDimensions: 102 169 103 292 228 304 256 192 187 125 
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+
+ShapeId: 0
+ShapeType: Rectangle
+ShapeDimensions: 280 128 61 178
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+
+ShapeId: 0
+ShapeType: Ellipse
+ShapeDimensions: 385 301 152 73
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+
+ShapeId: 0
+ShapeType: Circle
+ShapeDimensions: 536 112 132
+PenColor: #000000
+PenWidth: 1
+PenStyle: SolidLine
+PenCapStyle: SquareCap
+PenJoinStyle: BevelJoin
+BrushColor: #000000
+BrushStyle: Unknown
+

@@ -1,6 +1,7 @@
 #ifndef DRAWAREA_H
 #define DRAWAREA_H
 
+#include "Parser.h"
 #include "shapevector.h"
 #include "circle.h"
 #include "rectangle.h"
@@ -18,6 +19,7 @@ class DrawArea : public QWidget {
 public:
     explicit DrawArea(QWidget* parent = nullptr);
     void setShapeType(const QString& shapeType);
+    void loadShapeList();
 
 protected:
     void paintEvent(QPaintEvent* event) override;
@@ -30,7 +32,8 @@ signals:
 private:
     QString currentShapeType;
     QPoint startPoint;
-    ShapeVector shapes;  // Use ShapeVector to store shapes
+    ShapeVector shapeList;
+    ShapeVector shapesDrawn;  // Use ShapeVector to store shapes drawn
     QVector<QPoint> polygonVertices;  // Store vertices for Polygon
     QVector<QPoint> polylinePoints;   // Store points for Polyline
     bool isDrawingPolygon;  // Flag to track polygon drawing

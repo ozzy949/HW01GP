@@ -6,7 +6,7 @@
 #include "polyline.h"  // Include Polyline header
 
 DrawArea::DrawArea(QWidget* parent)
-    : QWidget(parent), currentShapeType("Circle"), isDrawingPolygon(false), isDrawingPolyline(false) {
+    : QWidget(parent), currentShapeType("Line"), isDrawingPolygon(false), isDrawingPolyline(false) {
 }
 
 void DrawArea::setShapeType(const QString& shapeType) {
@@ -26,7 +26,7 @@ void DrawArea::paintEvent(QPaintEvent* /*event*/) {
     painter.setRenderHint(QPainter::Antialiasing);
 
     // Draw all shapes in the ShapeVector
-    const shapeVec& shapesList = shapes.getShapes();  // Get the shapes vector
+    const shapeVec& shapesList = shapesDrawn.getShapes();  // Get the shapes vector
     for (Shape* shape : shapesList) {
         shape->draw(painter);  // Call the draw method on each shape
     }
@@ -92,26 +92,8 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
 
     Shape* shape = nullptr;
 
-    if (currentShapeType == "Circle") {
-        int radius = (startPoint - endPoint).manhattanLength();
-        shape = new Circle(0, startPoint, radius);
-    } else if (currentShapeType == "Rectangle") {
-        QRect rect(startPoint, endPoint);
-        shape = new Rectangle(rect);
-    } else if (currentShapeType == "Ellipse") {
-        QSize radii = QSize(std::abs(startPoint.x() - endPoint.x()), std::abs(startPoint.y() - endPoint.y()));
-        shape = new Ellipse(0, startPoint, radii);
-    } else if (currentShapeType == "Line") {
+    if (currentShapeType == "Line") {
         shape = new Line(0, startPoint, endPoint, QPoint(0, 0));
-    } else if (currentShapeType == "Polygon" && event->button() == Qt::RightButton) {
-        // Complete the polygon when right-click is detected
-        if (polygonVertices.size() > 2) {
-            shape = new Polygon(0, polygonVertices, QPoint(0, 0));
-            isDrawingPolygon = false; // Reset polygon drawing state
-            polygonVertices.clear(); // Clear vertices for the next polygon
-        } else {
-            qDebug() << "Polygon requires at least three vertices!";
-        }
     } else if (currentShapeType == "Polyline" && event->button() == Qt::RightButton) {
         // Complete the polyline when right-click is detected
         if (polylinePoints.size() > 1) {
@@ -121,18 +103,38 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
         } else {
             qDebug() << "Polyline requires at least two points!";
         }
+    } else if (currentShapeType == "Polygon" && event->button() == Qt::RightButton) {
+        // Complete the polygon when right-click is detected
+        if (polygonVertices.size() > 2) {
+            shape = new Polygon(0, polygonVertices, QPoint(0, 0));
+            isDrawingPolygon = false; // Reset polygon drawing state
+            polygonVertices.clear(); // Clear vertices for the next polygon
+        } else {
+            qDebug() << "Polygon requires at least three vertices!";
+        }
+    } else if (currentShapeType == "Rectangle") {
+        QRect rect(startPoint, endPoint);
+        shape = new Rectangle(rect);
+    } else if (currentShapeType == "Ellipse") {
+        QSize radii = QSize(std::abs(startPoint.x() - endPoint.x()), std::abs(startPoint.y() - endPoint.y()));
+        shape = new Ellipse(0, startPoint, radii);
+    } else if (currentShapeType == "Circle") {
+        int radius = (startPoint - endPoint).manhattanLength();
+        shape = new Circle(0, startPoint, radius);
     }
 
     if (shape != nullptr) {
         qDebug() << "Adding Shape";
-        shapes.addShape(shape);
-        parser.saveToFile(shapes, "shapes.txt");
+        Parser myParser;
+        shapesDrawn.addShape(shape);
+        myParser.saveToFile(shapesDrawn, "savedshapes.txt");
         emit shapeDrawn(shape);
         update();
     }
 }
 
-void DrawArea::loadShapes(const QString& filename) {
-    parser.loadFromFile(shapes, filename.toStdString());  // Pass ShapeVector to load
+void DrawArea::loadShapeList() {
+    Parser myParser;
+    myParser.loadFromFile(shapeList, "shapes.txt");  // Pass ShapeVector to load
     update();
 }

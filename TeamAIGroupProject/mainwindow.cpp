@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget* parent) :
     // Connect the signal for drawing a shape to store it in ShapeVector
     connect(ui->drawAreaWidget, &DrawArea::shapeDrawn, this, &MainWindow::onShapeDrawn);
 
-    ui->drawAreaWidget->loadShapes("shapes.txt");
+    ui->drawAreaWidget->loadShapeList();
     qDebug() << QDir::currentPath();
 
 }
