@@ -14,7 +14,6 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <QDebug>
 
 class Parser {
 private:
@@ -107,13 +106,83 @@ private:
         return nullptr;
     }
 
+    // Save Shapes to File using a Comparator to sort Shapes and a filter to select shapes
+    void saveToFile(ShapeVector& shapes, const std::string& filename,
+                    bool (*Comparator)(Shape*, Shape*),
+                    bool (*Filter)(Shape*) = nullptr,
+                    bool showArea = false, bool showPerimeter = false) {
+        shapeVec shapeList = shapes.getShapes();
+        // Get the list of shapes from the shape vector
+
+        // Filter shapes based on the provided filter condition if a filter is provided
+        if (Filter) {
+            // Use remove_if to reorder the vector and find the end of elements that should be removed
+            auto newEnd = std::remove_if(shapeList.begin(), shapeList.end(),
+                                         [&](Shape* shape) { return !Filter(shape); });
+            // After the "newEnd", we have the elements to erase, so we can erase them one by one
+            while (newEnd != shapeList.end()) {
+                shapeList.erase(newEnd);  // Erase one element at a time
+            }
+        }
+
+        // Sort the remaining shapes using the provided comparator if one is provided
+        if (Comparator) {
+            std::sort(shapeList.begin(), shapeList.end(), Comparator);
+        }
+
+        // Open the file to save the shapes
+        std::ofstream file(filename);
+        if (file.is_open()) {
+            for (Shape* shape : shapeList) {
+                // Write the shape's string representation
+                file << shape->toString();
+
+                // Conditionally append area or perimeter to the output
+                if (showArea) {
+                    file << "Area: " << shape->area() << std::endl;
+                }
+                if (showPerimeter) {
+                    file << "Perimeter: " << shape->perimeter() << std::endl;
+                }
+
+                file << std::endl;
+            }
+        }
+    }
+
+    // Comparator function to sort by ID
+    static bool compareById(Shape* shape1, Shape* shape2) {
+        return shape1->getId() < shape2->getId();
+    }
+
+    // Comparator function to sort by area
+    static bool compareByArea(Shape* shape1, Shape* shape2) {
+        return shape1->area() < shape2->area();
+    }
+
+    // Comparator function to sort by perimeter
+    static bool compareByPerimeter(Shape* shape1, Shape* shape2) {
+        return shape1->perimeter() < shape2->perimeter();
+    }
+
+    // Filter function to include only shapes with non-zero area
+    static bool filterNonZeroArea(Shape* shape) {
+        return shape->area() > 0;
+    }
+
 public:
+
+    void generateReportFiles(ShapeVector& shapes) {
+        saveToFile(shapes, "reportSortedByID.txt", compareById);
+        saveToFile(shapes, "reportSortedByArea.txt", compareByArea, filterNonZeroArea, true, false);
+        saveToFile(shapes, "reportSortedByPerimeter.txt", compareByPerimeter, nullptr, false, true);
+    }
+
     // Save Shapes to File
     void saveToFile(ShapeVector& shapes, const std::string& filename) {
         std::ofstream file(filename);
         if (file.is_open()) {
             for (Shape* shape : shapes.getShapes()) {
-                qDebug() << "Saving shape";
                 file << shape->toString() << std::endl;
             }
         }
