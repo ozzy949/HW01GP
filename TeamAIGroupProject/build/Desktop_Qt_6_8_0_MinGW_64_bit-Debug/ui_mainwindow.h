@@ -28,6 +28,9 @@ public:
     QAction *actionSort_by_Type;
     QAction *actionSort_by_Area;
     QAction *actionSort_by_Perimeter;
+    QAction *actionOpen;
+    QAction *actionSave_as;
+    QAction *actionNew;
     QWidget *centralwidget;
     QComboBox *ShapeComboBox;
     DrawArea *drawAreaWidget;
@@ -48,6 +51,12 @@ public:
         actionSort_by_Area->setObjectName("actionSort_by_Area");
         actionSort_by_Perimeter = new QAction(MainWindow);
         actionSort_by_Perimeter->setObjectName("actionSort_by_Perimeter");
+        actionOpen = new QAction(MainWindow);
+        actionOpen->setObjectName("actionOpen");
+        actionSave_as = new QAction(MainWindow);
+        actionSave_as->setObjectName("actionSave_as");
+        actionNew = new QAction(MainWindow);
+        actionNew->setObjectName("actionNew");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         ShapeComboBox = new QComboBox(centralwidget);
@@ -81,6 +90,9 @@ public:
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuReports->menuAction());
+        menuFile->addAction(actionNew);
+        menuFile->addAction(actionSave_as);
+        menuFile->addAction(actionOpen);
         menuReports->addAction(actionSort_by_ID);
         menuReports->addAction(actionSort_by_Area);
         menuReports->addAction(actionSort_by_Perimeter);
@@ -97,6 +109,9 @@ public:
         actionSort_by_Type->setText(QCoreApplication::translate("MainWindow", "Sort by Perimeter", nullptr));
         actionSort_by_Area->setText(QCoreApplication::translate("MainWindow", "Sort by Area", nullptr));
         actionSort_by_Perimeter->setText(QCoreApplication::translate("MainWindow", "Sort by Perimeter", nullptr));
+        actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
+        actionSave_as->setText(QCoreApplication::translate("MainWindow", "Save as", nullptr));
+        actionNew->setText(QCoreApplication::translate("MainWindow", "New", nullptr));
         ShapeComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Line", nullptr));
         ShapeComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Polyline", nullptr));
         ShapeComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Polygon", nullptr));

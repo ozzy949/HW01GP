@@ -21,6 +21,7 @@ public:
     void setShapeType(const QString& shapeType);
     void loadShapeList();
     ShapeVector& getShapesDrawn();
+    void clearShapesDrawn();
 
 protected:
     void paintEvent(QPaintEvent* event) override;

@@ -91,8 +91,7 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
     QPoint endPoint = event->pos();
 
     Shape* shape = nullptr;
-
-    Shape* shapeFromList;
+    Shape* shapeFromList; // Shape object using data from shapes.txt to apply pen/brush styles
 
     if (currentShapeType == "Line") {
         // Make shapeFromList into a shape with the data of the shape with id 1 (line) from shapeList
@@ -156,9 +155,7 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
 
     if (shape != nullptr) {
         qDebug() << "Adding Shape";
-        Parser myParser;
         shapesDrawn.addShape(shape);
-        myParser.saveToFile(shapesDrawn, "savedshapes.txt");
         emit shapeDrawn(shape);
         update();
     }
@@ -175,4 +172,8 @@ void DrawArea::loadShapeList() {
 // Getter function for shapes drawn so far
 ShapeVector& DrawArea::getShapesDrawn() {
     return shapesDrawn;
+}
+
+void DrawArea::clearShapesDrawn() {
+    shapesDrawn.clear();
 }

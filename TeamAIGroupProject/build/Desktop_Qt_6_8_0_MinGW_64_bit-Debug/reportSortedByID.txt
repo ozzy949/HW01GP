@@ -1,6 +1,6 @@
 ShapeId: 1
 ShapeType: Line
-ShapeDimensions: 366 164 463 225
+ShapeDimensions: 597 99 482 248
 PenColor: #0000ff
 PenWidth: 2
 PenStyle: DashDotLine
@@ -9,7 +9,7 @@ PenJoinStyle: MiterJoin
 
 ShapeId: 5
 ShapeType: Square
-ShapeDimensions: 276 265 37
+ShapeDimensions: 187 97 190
 PenColor: #ff0000
 PenWidth: 0
 PenStyle: SolidLine
@@ -18,14 +18,14 @@ PenJoinStyle: RoundJoin
 BrushColor: #0000ff
 BrushStyle: HorPattern
 
-ShapeId: 7
-ShapeType: Circle
-ShapeDimensions: 136 131 93
+ShapeId: 6
+ShapeType: Ellipse
+ShapeDimensions: 464 362 70 26
 PenColor: #000000
 PenWidth: 12
 PenStyle: SolidLine
 PenCapStyle: FlatCap
 PenJoinStyle: MiterJoin
-BrushColor: #ff00ff
-BrushStyle: SolidPattern
+BrushColor: #ffffff
+BrushStyle: NoBrush
 
