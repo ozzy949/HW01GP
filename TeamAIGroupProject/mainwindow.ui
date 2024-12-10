@@ -98,26 +98,37 @@
      <string>File</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuReports">
     <property name="title">
      <string>Reports</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
+    <addaction name="actionSort_by_ID"/>
+    <addaction name="actionSort_by_Area"/>
+    <addaction name="actionSort_by_Perimeter"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
    <addaction name="menuReports"/>
-   <addaction name="menuHelp"/>
   </widget>
+  <action name="actionSort_by_ID">
+   <property name="text">
+    <string>Sort by ID</string>
+   </property>
+  </action>
+  <action name="actionSort_by_Type">
+   <property name="text">
+    <string>Sort by Perimeter</string>
+   </property>
+  </action>
+  <action name="actionSort_by_Area">
+   <property name="text">
+    <string>Sort by Area</string>
+   </property>
+  </action>
+  <action name="actionSort_by_Perimeter">
+   <property name="text">
+    <string>Sort by Perimeter</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

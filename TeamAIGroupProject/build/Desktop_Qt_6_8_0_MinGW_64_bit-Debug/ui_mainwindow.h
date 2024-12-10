@@ -24,20 +24,30 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionSort_by_ID;
+    QAction *actionSort_by_Type;
+    QAction *actionSort_by_Area;
+    QAction *actionSort_by_Perimeter;
     QWidget *centralwidget;
     QComboBox *ShapeComboBox;
     DrawArea *drawAreaWidget;
     QMenuBar *menubar;
     QMenu *menuFile;
-    QMenu *menuEdit;
     QMenu *menuReports;
-    QMenu *menuHelp;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(800, 600);
+        actionSort_by_ID = new QAction(MainWindow);
+        actionSort_by_ID->setObjectName("actionSort_by_ID");
+        actionSort_by_Type = new QAction(MainWindow);
+        actionSort_by_Type->setObjectName("actionSort_by_Type");
+        actionSort_by_Area = new QAction(MainWindow);
+        actionSort_by_Area->setObjectName("actionSort_by_Area");
+        actionSort_by_Perimeter = new QAction(MainWindow);
+        actionSort_by_Perimeter->setObjectName("actionSort_by_Perimeter");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         ShapeComboBox = new QComboBox(centralwidget);
@@ -65,18 +75,15 @@ public:
         menubar->setGeometry(QRect(0, 0, 800, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
-        menuEdit = new QMenu(menubar);
-        menuEdit->setObjectName("menuEdit");
         menuReports = new QMenu(menubar);
         menuReports->setObjectName("menuReports");
-        menuHelp = new QMenu(menubar);
-        menuHelp->setObjectName("menuHelp");
         MainWindow->setMenuBar(menubar);
 
         menubar->addAction(menuFile->menuAction());
-        menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menuReports->menuAction());
-        menubar->addAction(menuHelp->menuAction());
+        menuReports->addAction(actionSort_by_ID);
+        menuReports->addAction(actionSort_by_Area);
+        menuReports->addAction(actionSort_by_Perimeter);
 
         retranslateUi(MainWindow);
 
@@ -86,6 +93,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionSort_by_ID->setText(QCoreApplication::translate("MainWindow", "Sort by ID", nullptr));
+        actionSort_by_Type->setText(QCoreApplication::translate("MainWindow", "Sort by Perimeter", nullptr));
+        actionSort_by_Area->setText(QCoreApplication::translate("MainWindow", "Sort by Area", nullptr));
+        actionSort_by_Perimeter->setText(QCoreApplication::translate("MainWindow", "Sort by Perimeter", nullptr));
         ShapeComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Line", nullptr));
         ShapeComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Polyline", nullptr));
         ShapeComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Polygon", nullptr));
@@ -95,9 +106,7 @@ public:
         ShapeComboBox->setItemText(6, QCoreApplication::translate("MainWindow", "Circle", nullptr));
 
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
-        menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuReports->setTitle(QCoreApplication::translate("MainWindow", "Reports", nullptr));
-        menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi
 
 };

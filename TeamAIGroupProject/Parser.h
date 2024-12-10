@@ -172,9 +172,15 @@ private:
 
 public:
 
-    void generateReportFiles(ShapeVector& shapes) {
+    void generateSortByIDReportFile(ShapeVector& shapes) {
         saveToFile(shapes, "reportSortedByID.txt", compareById);
+    }
+
+    void generateSortByAreaReportFile(ShapeVector& shapes) {
         saveToFile(shapes, "reportSortedByArea.txt", compareByArea, filterNonZeroArea, true, false);
+    }
+
+    void generateSortByPerimeterReportFile(ShapeVector& shapes) {
         saveToFile(shapes, "reportSortedByPerimeter.txt", compareByPerimeter, nullptr, false, true);
     }
 

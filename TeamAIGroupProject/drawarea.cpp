@@ -159,18 +159,20 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
         Parser myParser;
         shapesDrawn.addShape(shape);
         myParser.saveToFile(shapesDrawn, "savedshapes.txt");
-        myParser.generateReportFiles(shapesDrawn);
         emit shapeDrawn(shape);
         update();
     }
 }
 
+// This function is specifically for getting pen/brush styles from shapes.txt and storing them in shapeList
 void DrawArea::loadShapeList() {
     Parser myParser;
-    myParser.loadFromFile(shapeList, "savedshapes.txt");  // Pass ShapeVector to load
-    myParser.generateReportFiles(shapeList);
-
-    shapesDrawn = shapeList;
-
+    myParser.loadFromFile(shapeList, "shapes.txt");  // Load in shape specifications (pens, brushes), store in shapeList only as a reference for the paint events
+    // shapesDrawn = shapeList; // This line is what loads in the shapes at the start, but I will implement it with an "open" menu option
     update();
+}
+
+// Getter function for shapes drawn so far
+ShapeVector& DrawArea::getShapesDrawn() {
+    return shapesDrawn;
 }

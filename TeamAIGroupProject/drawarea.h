@@ -20,6 +20,7 @@ public:
     explicit DrawArea(QWidget* parent = nullptr);
     void setShapeType(const QString& shapeType);
     void loadShapeList();
+    ShapeVector& getShapesDrawn();
 
 protected:
     void paintEvent(QPaintEvent* event) override;

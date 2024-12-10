@@ -32,6 +32,69 @@ void MainWindow::onShapeDrawn(Shape* shape) {
     // drawArea->updateShapes(shapeVector.getShapes());
 }
 
+void MainWindow::on_actionSort_by_ID_triggered()
+{
+  Parser myParser;
+  myParser.generateSortByIDReportFile(ui->drawAreaWidget->getShapesDrawn());
+
+  // Check if the file exists
+  QFile file("reportSortedByID.txt");
+  if (!file.exists()) {
+      // If the file doesn't exist, show an error message
+      QMessageBox::warning(this, "Error", "File not found: reportSortedByID.txt");
+      return;
+  }
+
+  // Use QDesktopServices to open the file with the system's default text viewer
+  QUrl fileUrl = QUrl::fromLocalFile("reportSortedByID.txt");  // Convert the file path to a QUrl
+  if (!QDesktopServices::openUrl(fileUrl)) {
+      // If unable to open the file, show an error message
+      QMessageBox::warning(this, "Error", "Could not open the file.");
+  }
+}
+
+void MainWindow::on_actionSort_by_Area_triggered()
+{
+  Parser myParser;
+  myParser.generateSortByAreaReportFile(ui->drawAreaWidget->getShapesDrawn());
+
+  // Check if the file exists
+  QFile file("reportSortedByArea.txt");
+  if (!file.exists()) {
+    // If the file doesn't exist, show an error message
+    QMessageBox::warning(this, "Error", "File not found: reportSortedByArea.txt");
+    return;
+  }
+
+  // Use QDesktopServices to open the file with the system's default text viewer
+  QUrl fileUrl = QUrl::fromLocalFile("reportSortedByArea.txt");  // Convert the file path to a QUrl
+  if (!QDesktopServices::openUrl(fileUrl)) {
+    // If unable to open the file, show an error message
+    QMessageBox::warning(this, "Error", "Could not open the file.");
+  }
+}
+
+void MainWindow::on_actionSort_by_Perimeter_triggered()
+{
+  Parser myParser;
+  myParser.generateSortByPerimeterReportFile(ui->drawAreaWidget->getShapesDrawn());
+
+  // Check if the file exists
+  QFile file("reportSortedByPerimeter.txt");
+  if (!file.exists()) {
+    // If the file doesn't exist, show an error message
+    QMessageBox::warning(this, "Error", "File not found: reportSortedByPerimeter.txt");
+    return;
+  }
+
+  // Use QDesktopServices to open the file with the system's default text viewer
+  QUrl fileUrl = QUrl::fromLocalFile("reportSortedByPerimeter.txt");  // Convert the file path to a QUrl
+  if (!QDesktopServices::openUrl(fileUrl)) {
+    // If unable to open the file, show an error message
+    QMessageBox::warning(this, "Error", "Could not open the file.");
+  }
+}
+
 MainWindow::~MainWindow() {
     delete ui;
 }
