@@ -1,0 +1,108 @@
+ShapeId: 4
+ShapeType: Rectangle
+ShapeDimensions: 179 382 41 129
+PenColor: #0000ff
+PenWidth: 0
+PenStyle: DashLine
+PenCapStyle: RoundCap
+PenJoinStyle: RoundJoin
+BrushColor: #ff0000
+BrushStyle: VerPattern
+Area: 5289
+
+ShapeId: 3
+ShapeType: Polygon
+ShapeDimensions: 273 7 76 412 468 50 185 191 0 191 
+PenColor: #000000
+PenWidth: 32764
+PenStyle: SolidLine
+PenCapStyle: FlatCap
+PenJoinStyle: MiterJoin
+BrushColor: #000000
+BrushStyle: NoBrush
+Area: 6871
+
+ShapeId: 6
+ShapeType: Ellipse
+ShapeDimensions: 207 397 104 47
+PenColor: #000000
+PenWidth: 12
+PenStyle: SolidLine
+PenCapStyle: FlatCap
+PenJoinStyle: MiterJoin
+BrushColor: #ffffff
+BrushStyle: NoBrush
+Area: 15356.1
+
+ShapeId: 4
+ShapeType: Rectangle
+ShapeDimensions: 20 200 170 100
+PenColor: #0000ff
+PenWidth: 0
+PenStyle: DashLine
+PenCapStyle: RoundCap
+PenJoinStyle: RoundJoin
+BrushColor: #ff0000
+BrushStyle: VerPattern
+Area: 17000
+
+ShapeId: 8
+ShapeType: Text
+ShapeDimensions: 250, 425, 50, 500
+TextString: Class
+TextColor: #000000
+TextAlignment: 1
+TextPointSize: 12
+TextFontFamily: TextFontStyle:
+TextFontStyle: StyleNormal
+TextFontWeight: Normal
+Area: 25000
+
+ShapeId: 5
+ShapeType: Square
+ShapeDimensions: 250 150 200
+PenColor: #ff0000
+PenWidth: 0
+PenStyle: SolidLine
+PenCapStyle: RoundCap
+PenJoinStyle: RoundJoin
+BrushColor: #0000ff
+BrushStyle: HorPattern
+Area: 40000
+
+ShapeId: 3
+ShapeType: Polygon
+ShapeDimensions: 900 90 980 0 0 0 
+PenColor: #000000
+PenWidth: 518
+PenStyle: SolidLine
+PenCapStyle: FlatCap
+PenJoinStyle: MiterJoin
+BrushColor: #000000
+BrushStyle: NoBrush
+Area: 44100
+
+ShapeId: 6
+ShapeType: Ellipse
+ShapeDimensions: 520 200 170 100
+PenColor: #000000
+PenWidth: 12
+PenStyle: SolidLine
+PenCapStyle: FlatCap
+PenJoinStyle: MiterJoin
+BrushColor: #ffffff
+BrushStyle: NoBrush
+Area: 53407.1
+
+ShapeId: 7
+ShapeType: Circle
+ShapeDimensions: 750 150 200
+PenColor: #000000
+PenWidth: 12
+PenStyle: SolidLine
+PenCapStyle: FlatCap
+PenJoinStyle: MiterJoin
+BrushColor: #ff00ff
+BrushStyle: SolidPattern
+Area: 125664
+
