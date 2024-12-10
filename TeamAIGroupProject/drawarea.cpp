@@ -159,6 +159,7 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
         Parser myParser;
         shapesDrawn.addShape(shape);
         myParser.saveToFile(shapesDrawn, "savedshapes.txt");
+        myParser.generateReportFiles(shapesDrawn);
         emit shapeDrawn(shape);
         update();
     }
@@ -166,6 +167,10 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
 
 void DrawArea::loadShapeList() {
     Parser myParser;
-    myParser.loadFromFile(shapeList, "shapes.txt");  // Pass ShapeVector to load
+    myParser.loadFromFile(shapeList, "savedshapes.txt");  // Pass ShapeVector to load
+    myParser.generateReportFiles(shapeList);
+
+    shapesDrawn = shapeList;
+
     update();
 }
