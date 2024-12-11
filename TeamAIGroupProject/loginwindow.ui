@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>LoginWindow</string>
   </property>
@@ -18,10 +24,22 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>120</y>
+      <y>220</y>
       <width>81</width>
       <height>36</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>36</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>81</width>
+      <height>36</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -44,6 +62,18 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>61</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>61</width>
+      <height>41</height>
+     </size>
+    </property>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
@@ -61,6 +91,18 @@
       <width>401</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>401</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>401</width>
+      <height>41</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -80,6 +122,18 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>51</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>51</width>
+      <height>41</height>
+     </size>
+    </property>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
@@ -97,6 +151,18 @@
       <width>211</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>211</width>
+      <height>21</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>211</width>
+      <height>21</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -116,8 +182,33 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>141</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>141</width>
+      <height>41</height>
+     </size>
+    </property>
     <property name="text">
      <string>Need help? Contact us!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TeamAILogo">
+    <property name="geometry">
+     <rect>
+      <x>288</x>
+      <y>15</y>
+      <width>231</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

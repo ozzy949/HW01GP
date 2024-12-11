@@ -8,6 +8,18 @@ LoginWindow::LoginWindow(QWidget *parent)
     , ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
+
+    // Load image from file
+    QPixmap pixmap("teamai.png");
+
+    if (pixmap.isNull()) {
+        qDebug() << "Failed to load image.";
+    } else {
+        ui->TeamAILogo->setPixmap(pixmap);  // Set the pixmap on QLabel
+        ui->TeamAILogo->setScaledContents(true);  // Scale image to fit the QLabel
+    }
+
+
     ui->EmptyNameWarning->setVisible(false);
 
     // Connect the "Contact Us" button to the slot

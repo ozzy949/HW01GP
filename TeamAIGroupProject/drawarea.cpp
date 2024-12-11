@@ -165,7 +165,6 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* event) {
 void DrawArea::loadShapeList() {
     Parser myParser;
     myParser.loadFromFile(shapeList, "shapes.txt");  // Load in shape specifications (pens, brushes), store in shapeList only as a reference for the paint events
-    // shapesDrawn = shapeList; // This line is what loads in the shapes at the start, but I will implement it with an "open" menu option
     update();
 }
 
